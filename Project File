@@ -1,0 +1,2861 @@
+Private Declare Function SendMessageStr Lib "user32" Alias "SendMessageA" (ByVal hwnd As Long, ByVal wMsg As Long, ByVal wParam As Long, ByVal lParam As String) As Long
+Private Const BIF_RETURNONLYFSDIRS As Long = &H1
+
+Dim Item() As String
+Dim Workbook As Excel.Workbook
+Dim Worksheet As Excel.Worksheet
+Dim App As Object
+'Target cells for sheets variable
+Dim flB As String
+Dim flG As String
+Dim fl1 As String
+Dim fl2 As String
+Dim fl3 As String
+Dim fl4 As String
+Dim fl5 As String
+Dim fl6 As String
+Dim fl7 As String
+Dim fl8 As String
+Dim fl9 As String
+Dim fl10 As String
+
+'cell value add
+Dim A700 As Integer
+Dim A850 As Integer
+Dim A1900 As Integer
+Dim A2100 As Integer
+Dim V700 As Integer
+Dim V850 As Integer
+Dim V1900 As Integer
+Dim V2100 As Integer
+Dim T700 As Integer
+Dim T850 As Integer
+Dim T1900 As Integer
+Dim T2100 As Integer
+
+
+
+
+ 
+Function BrowseFolder(Optional Caption As String, Optional InitialFolder As String) As String
+'You need to set reference to Microsoft shell controls and automation
+    Dim SH As Shell32.Shell
+    Dim F As Shell32.Folder
+    Set SH = New Shell32.Shell
+    Set F = SH.BrowseForFolder(0&, Caption, BIF_RETURNONLYFSDIRS, InitialFolder)
+    If Not F Is Nothing Then
+        BrowseFolder = F.Items.Item.Path
+    End If
+End Function
+
+
+Public Function countReset()
+
+lblCount1.Caption = 2
+lblcount2.Caption = 2
+lblcount3.Caption = 2
+lbLcount4.Caption = 2
+lblcount5.Caption = 2
+lblcount6.Caption = 2
+lblcount7.Caption = 2
+lblCount8.Caption = 2
+lblCount9.Caption = 2
+lblCount10.Caption = 2
+lblCount11.Caption = 2
+lblCount12.Caption = 2
+End Function
+
+
+Private Sub cmdATT1900_Click()
+''''''''''''''''set workbook'''''''''''''''''''
+   countReset
+   On Error Resume Next
+   frameCellCount.Caption = "With Att 1900"
+    Set Worksheet = Workbook.Sheets("ATT-1900-UMTS")
+    
+     With Worksheet
+    'basement
+    Dim bValue As String
+    Dim bPCI As Integer
+   
+    Do Until .Range(flB & lblCount1.Caption).Text = ""
+        bValue = .Range(flB & lblCount1.Caption).Text
+        bPCI = .Range("d" & lblCount1.Caption).Text
+            
+            If bPCI = 266 Then  'conditional on CellID
+                .Range(flB & lblCount1.Caption).Value = bValue + A1900
+                
+            ElseIf bPCI = 274 Then
+                .Range(flB & lblCount1.Caption).Value = bValue + A1900
+                
+            ElseIf bPCI = 282 Then
+                .Range(flB & lblCount1.Caption).Value = bValue + A1900
+            
+            End If ' end conditional
+        lblCount1.Caption = lblCount1.Caption + 1
+    Loop
+    
+    'ground
+    Dim gValue As String
+    Dim gPCI As String
+    Do Until .Range(flG & lblcount2.Caption).Text = ""
+        gValue = .Range(flG & lblcount2.Caption).Text
+        gPCI = .Range("h" & lblcount2.Caption).Text
+            
+            If gPCI = 266 Then  'conditional on CellID
+                .Range(flG & lblcount2.Caption).Value = gValue + A1900
+                
+            ElseIf gPCI = 274 Then
+                .Range(flG & lblcount2.Caption).Value = gValue + A1900
+               
+            ElseIf gPCI = 282 Then
+                .Range(flG & lblcount2.Caption).Value = gValue + A1900
+                
+            End If
+        lblcount2.Caption = lblcount2.Caption + 1
+    Loop
+    
+    'first
+    Dim firstValue As String
+    Dim firstPCI As String
+    Do Until .Range(fl1 & lblcount3.Caption).Text = ""
+        firstValue = .Range(fl1 & lblcount3.Caption).Text
+        firstPCI = .Range("l" & lblcount3.Caption).Text
+            If firstPCI = 266 Then  'conditional on CellID
+                .Range(fl1 & lblcount3.Caption).Value = firstValue + A1900
+               
+            ElseIf firstPCI = 274 Then
+                .Range(fl1 & lblcount3.Caption).Value = firstValue + A1900
+                
+            ElseIf firstPCI = 282 Then
+                .Range(fl1 & lblcount3.Caption).Value = firstValue + A1900
+                
+            End If
+        lblcount3.Caption = lblcount3.Caption + 1
+    Loop
+    
+    'second
+    Dim secondValue As String
+    Dim secondPCI As String
+    Do Until .Range(fl2 & lbLcount4.Caption).Text = ""
+        secondValue = .Range(fl2 & lbLcount4.Caption).Text
+        secondPCI = .Range("p" & lbLcount4.Caption).Text
+            If secondPCI = 266 Then  'conditional on CellID
+                .Range(fl2 & lbLcount4.Caption).Value = secondValue + A1900
+              '  lblC700.Caption = lblC700.Caption + 1
+            ElseIf secondPCI = 274 Then
+                .Range(fl2 & lbLcount4.Caption).Value = secondValue + A1900
+               ' lblC700.Caption = lblC700.Caption + 1
+            ElseIf secondPCI = 282 Then
+                .Range(fl2 & lbLcount4.Caption).Value = secondValue + A1900
+               ' lblC700.Caption = lblC700.Caption + 1
+            End If
+        lbLcount4.Caption = lbLcount4.Caption + 1
+    Loop
+    
+    'third
+    Dim thirdValue As String
+    Dim thirdPCI As String
+    Do Until .Range(fl3 & lblcount5.Caption).Text = ""
+        thirdValue = .Range(fl3 & lblcount5.Caption).Text
+        thirdPCI = .Range("t" & lblcount5.Caption).Text
+            If thirdPCI = 266 Then  'conditional on CellID
+                .Range(fl3 & lblcount5.Caption).Value = thirdValue + A1900
+               ' lblC700.Caption = lblC700.Caption + 1
+            ElseIf thirdPCI = 274 Then
+                .Range(fl3 & lblcount5.Caption).Value = thirdValue + A1900
+               ' lblC700.Caption = lblC700.Caption + 1
+            ElseIf thirdPCI = 282 Then
+                .Range(fl3 & lblcount5.Caption).Value = thirdValue + A1900
+               ' lblC700.Caption = lblC700.Caption + 1
+            End If
+        lblcount5.Caption = lblcount5.Caption + 1
+    Loop
+    
+    'fourth
+    Dim fourthValue As String
+    Dim fourthPCI As String
+    Do Until .Range(fl4 & lblcount6.Caption).Text = ""
+        fourthValue = .Range(fl4 & lblcount6.Caption).Text
+        fourthPCI = .Range("x" & lblcount6.Caption).Text
+            If fourthPCI = 266 Then  'conditional on CellID
+                .Range(fl4 & lblcount6.Caption).Value = fourthValue + A1900
+               ' lblC700.Caption = lblC700.Caption + 1
+            ElseIf fourthPCI = 274 Then
+                .Range(fl4 & lblcount6.Caption).Value = fourthValue + A1900
+               ' lblC700.Caption = lblC700.Caption + 1
+            ElseIf fourthPCI = 282 Then
+                .Range(fl4 & lblcount6.Caption).Value = fourthValue + A1900
+               ' lblC700.Caption = lblC700.Caption + 1
+            End If
+        lblcount6.Caption = lblcount6.Caption + 1
+    Loop
+    
+    'fifth
+    Dim fifthValue As String
+    Dim fifthPCI As String
+    Do Until .Range(fl5 & lblcount7.Caption).Text = ""
+        fifthValue = .Range(fl5 & lblcount7.Caption).Text
+        fifthPCI = .Range("ab" & lblcount7.Caption).Text
+            If fifthPCI = 266 Then  'conditional on CellID
+                .Range(fl5 & lblcount7.Caption).Value = fifthValue + A1900
+             '   lblC700.Caption = lblC700.Caption + 1
+            ElseIf fifthPCI = 274 Then
+                .Range(fl5 & lblcount7.Caption).Value = fifthValue + A1900
+            '    lblC700.Caption = lblC700.Caption + 1
+            ElseIf fifthPCI = 282 Then
+                .Range(fl5 & lblcount7.Caption).Value = fifthValue + A1900
+            '    lblC700.Caption = lblC700.Caption + 1
+            End If
+        lblcount7.Caption = lblcount7.Caption + 1
+    Loop
+    
+    'sixth
+    Dim sixthValue As String
+    Dim sixthPCI As String
+    Do Until .Range(fl6 & lblCount8.Caption).Text = ""
+        sixthValue = .Range(fl6 & lblCount8.Caption).Text
+        sixthPCI = .Range("af" & lblCount8.Caption).Text
+            If sixthPCI = 266 Then  'conditional on CellID
+                .Range(fl6 & lblCount8.Caption).Value = sixthValue + A1900
+           '     lblC700.Caption = lblC700.Caption + 1
+            ElseIf sixthPCI = 274 Then
+                .Range(fl6 & lblCount8.Caption).Value = sixthValue + A1900
+           '     lblC700.Caption = lblC700.Caption + 1
+            ElseIf sixthPCI = 282 Then
+                .Range(fl6 & lblCount8.Caption).Value = sixthValue + A1900
+           '     lblC700.Caption = lblC700.Caption + 1
+            End If
+        lblCount8.Caption = lblCount8.Caption + 1
+    Loop
+    
+    'seventh
+    Dim seventhValue As String
+    Dim seventhPCI As String
+    Do Until .Range(fl7 & lblCount9.Caption).Text = ""
+        seventhValue = .Range(fl7 & lblCount9.Caption).Text
+        seventhPCI = .Range("aj" & lblCount9.Caption).Text
+            If seventhPCI = 266 Then  'conditional on CellID
+                .Range(fl7 & lblCount9.Caption).Value = seventhValue + A1900
+            '    lblC700.Caption = lblC700.Caption + 1
+            ElseIf seventhPCI = 274 Then
+                .Range(fl7 & lblCount9.Caption).Value = seventhValue + A1900
+             '   lblC700.Caption = lblC700.Caption + 1
+            ElseIf seventhPCI = 282 Then
+                .Range(fl7 & lblCount9.Caption).Value = seventhValue + A1900
+              '  lblC700.Caption = lblC700.Caption + 1
+            End If
+        lblCount9.Caption = lblCount9.Caption + 1
+    Loop
+    
+    'eighth
+    Dim eighthValue As String
+    Dim eighthPCI As String
+    Do Until .Range(fl8 & lblCount10.Caption).Text = ""
+        eighthValue = .Range(fl8 & lblCount10.Caption).Text
+        eigthPCI = .Range("an" & lblCount10.Caption).Text
+            If eighthPCI = 266 Then  'conditional on CellID
+                .Range(fl8 & lblCount10.Caption).Value = eighthValue + A1900
+         '       lblC700.Caption = lblC700.Caption + 1
+            ElseIf eighthPCI = 274 Then
+                .Range(fl8 & lblCount10.Caption).Value = eighthValue + A1900
+          '      lblC700.Caption = lblC700.Caption + 1
+            ElseIf eighthPCI = 282 Then
+                .Range(fl8 & lblCount10.Caption).Value = eighthValue + A1900
+           '     lblC700.Caption = lblC700.Caption + 1
+            End If
+        lblCount10.Caption = lblCount10.Caption + 1
+            
+    Loop
+    
+    'ninth
+    Dim ninthValue As String
+    Dim ninthPCI As String
+    Do Until .Range(fl9 & lblCount11.Caption).Text = ""
+        ninthValue = .Range(fl9 & lblCount11.Caption).Text
+        ninthPCI = .Range("ar" & lblCount11.Caption).Text
+            If ninthPCI = 266 Then  'conditional on CellID
+                .Range(fl9 & lblCount11.Caption).Value = ninthValue + A1900
+        '        lblC700.Caption = lblC700.Caption + 1
+            ElseIf ninthPCI = 274 Then
+                .Range(fl9 & lblCount11.Caption).Value = ninthValue + A1900
+         '       lblC700.Caption = lblC700.Caption + 1
+            ElseIf ninthPCI = 282 Then
+                .Range(fl9 & lblCount11.Caption).Value = ninthValue + A1900
+          '      lblC700.Caption = lblC700.Caption + 1
+            End If
+        lblCount11.Caption = lblCount11.Caption + 1
+    Loop
+    
+    'tenth
+    Dim tenthValue As String
+    Dim tenthPCI As String
+    Do Until .Range(fl10 & lblCount12.Caption).Text = ""
+        tenthValue = .Range(fl10 & lblCount12.Caption).Text
+        tenthPCI = .Range("av" & lblCount12.Caption).Text
+            If tenthPCI = 266 Then  'conditional on CellID
+                .Range(fl10 & lblCount12.Caption).Value = tenthValue + A1900
+         '       lblC700.Caption = lblC700.Caption + 1
+            ElseIf tenthPCI = 274 Then
+                .Range(fl10 & lblCount12.Caption).Value = tenthValue + A1900
+         '       lblC700.Caption = lblC700.Caption + 1
+            ElseIf tenthPCI = 282 Then
+                .Range(fl10 & lblCount12.Caption).Value = tenthValue + A1900
+         '       lblC700.Caption = lblC700.Caption + 1
+            End If
+        lblCount12.Caption = lblCount12.Caption + 1
+    Loop
+End With
+End Sub
+
+Private Sub cmdATT700_Click()
+''''''''''''''''set workbook'''''''''''''''''''
+    'Set Workbook = App.Workbooks.Open(Text1.Text & "\" & item(i))
+    On Error Resume Next
+    Set Worksheet = Workbook.Sheets("ATT-700-LTE")
+    
+    With Worksheet
+    'basement
+    Dim bValue As String
+    Dim bPCI As Integer
+   
+    Do Until .Range(flB & lblCount1.Caption).Text = ""
+        bValue = .Range(flB & lblCount1.Caption).Text
+        bPCI = .Range("d" & lblCount1.Caption).Text
+            
+        '    If bPCI = 246 Then  'conditional on CellID
+        '        .Range(flB & lblCount1.Caption).Value = bValue + A700
+                
+         '   ElseIf bPCI = 247 Then
+          '      .Range(flB & lblCount1.Caption).Value = bValue + A700
+                
+           ' ElseIf bPCI = 248 Then
+                .Range(flB & lblCount1.Caption).Value = bValue + A700
+            
+            'End If ' end conditional
+        lblCount1.Caption = lblCount1.Caption + 1
+    Loop
+    
+    'ground
+    Dim gValue As String
+    Dim gPCI As String
+    Do Until .Range(flG & lblcount2.Caption).Text = ""
+        gValue = .Range(flG & lblcount2.Caption).Text
+        gPCI = .Range("h" & lblcount2.Caption).Text
+            
+   '         If gPCI = 246 Then  'conditional on CellID
+   '             .Range(flG & lblcount2.Caption).Value = gValue + A700
+                
+   '         ElseIf gPCI = 247 Then
+   '             .Range(flG & lblcount2.Caption).Value = gValue + A700
+               
+   '         ElseIf gPCI = 248 Then
+                .Range(flG & lblcount2.Caption).Value = gValue + A700
+                
+   '         End If
+        lblcount2.Caption = lblcount2.Caption + 1
+    Loop
+    
+    'first
+    Dim firstValue As String
+    Dim firstPCI As String
+    Do Until .Range(fl1 & lblcount3.Caption).Text = ""
+        firstValue = .Range(fl1 & lblcount3.Caption).Text
+        firstPCI = .Range("l" & lblcount3.Caption).Text
+   '         If firstPCI = 246 Then  'conditional on CellID
+   '             .Range(fl1 & lblcount3.Caption).Value = firstValue + A700
+   '
+   '         ElseIf firstPCI = 247 Then
+   '             .Range(fl1 & lblcount3.Caption).Value = firstValue + A700
+   '
+   '         ElseIf firstPCI = 248 Then
+                .Range(fl1 & lblcount3.Caption).Value = firstValue + A700
+   '
+   '         End If
+        lblcount3.Caption = lblcount3.Caption + 1
+    Loop
+    
+    'second
+    Dim secondValue As String
+    Dim secondPCI As String
+    Do Until .Range(fl2 & lbLcount4.Caption).Text = ""
+        secondValue = .Range(fl2 & lbLcount4.Caption).Text
+        secondPCI = .Range("p" & lbLcount4.Caption).Text
+   '         If secondPCI = 246 Then  'conditional on CellID
+   '             .Range(fl2 & lbLcount4.Caption).Value = secondValue + A700
+              '  lblC700.Caption = lblC700.Caption + 1
+   '         ElseIf secondPCI = 247 Then
+   '             .Range(fl2 & lbLcount4.Caption).Value = secondValue + A700
+               ' lblC700.Caption = lblC700.Caption + 1
+   '         ElseIf secondPCI = 248 Then
+                .Range(fl2 & lbLcount4.Caption).Value = secondValue + A700
+               ' lblC700.Caption = lblC700.Caption + 1
+   '         End If
+        lbLcount4.Caption = lbLcount4.Caption + 1
+    Loop
+    
+    'third
+    Dim thirdValue As String
+    Dim thirdPCI As String
+    Do Until .Range(fl3 & lblcount5.Caption).Text = ""
+        thirdValue = .Range(fl3 & lblcount5.Caption).Text
+        thirdPCI = .Range("t" & lblcount5.Caption).Text
+   '         If thirdPCI = 246 Then  'conditional on CellID
+   '             .Range(fl3 & lblcount5.Caption).Value = thirdValue + A700
+               ' lblC700.Caption = lblC700.Caption + 1
+   '         ElseIf thirdPCI = 247 Then
+   '             .Range(fl3 & lblcount5.Caption).Value = thirdValue + A700
+               ' lblC700.Caption = lblC700.Caption + 1
+    '        ElseIf thirdPCI = 248 Then
+                .Range(fl3 & lblcount5.Caption).Value = thirdValue + A700
+               ' lblC700.Caption = lblC700.Caption + 1
+    '        End If
+        lblcount5.Caption = lblcount5.Caption + 1
+    Loop
+    
+    'fourth
+    Dim fourthValue As String
+    Dim fourthPCI As String
+    Do Until .Range(fl4 & lblcount6.Caption).Text = ""
+        fourthValue = .Range(fl4 & lblcount6.Caption).Text
+        fourthPCI = .Range("x" & lblcount6.Caption).Text
+    '        If fourthPCI = 246 Then  'conditional on CellID
+    '            .Range(fl4 & lblcount6.Caption).Value = fourthValue + A700
+               ' lblC700.Caption = lblC700.Caption + 1
+    '        ElseIf fourthPCI = 247 Then
+    '            .Range(fl4 & lblcount6.Caption).Value = fourthValue + A700
+               ' lblC700.Caption = lblC700.Caption + 1
+    '        ElseIf fourthPCI = 248 Then
+                .Range(fl4 & lblcount6.Caption).Value = fourthValue + A700
+               ' lblC700.Caption = lblC700.Caption + 1
+    '        End If
+        lblcount6.Caption = lblcount6.Caption + 1
+    Loop
+    
+    'fifth
+    Dim fifthValue As String
+    Dim fifthPCI As String
+    Do Until .Range(fl5 & lblcount7.Caption).Text = ""
+        fifthValue = .Range(fl5 & lblcount7.Caption).Text
+        fifthPCI = .Range("ab" & lblcount7.Caption).Text
+    '        If fifthPCI = 246 Then  'conditional on CellID
+    '            .Range(fl5 & lblcount7.Caption).Value = fifthValue + A700
+             '   lblC700.Caption = lblC700.Caption + 1
+    '        ElseIf fifthPCI = 247 Then
+    '            .Range(fl5 & lblcount7.Caption).Value = fifthValue + A700
+            '    lblC700.Caption = lblC700.Caption + 1
+    '        ElseIf fifthPCI = 248 Then
+                .Range(fl5 & lblcount7.Caption).Value = fifthValue + A700
+            '    lblC700.Caption = lblC700.Caption + 1
+    '        End If
+        lblcount7.Caption = lblcount7.Caption + 1
+    Loop
+    
+    'sixth
+    Dim sixthValue As String
+    Dim sixthPCI As String
+    Do Until .Range(fl6 & lblCount8.Caption).Text = ""
+        sixthValue = .Range(fl6 & lblCount8.Caption).Text
+        sixthPCI = .Range("af" & lblCount8.Caption).Text
+    '        If sixthPCI = 246 Then  'conditional on CellID
+    '            .Range(fl6 & lblCount8.Caption).Value = sixthValue + A700
+           '     lblC700.Caption = lblC700.Caption + 1
+    '        ElseIf sixthPCI = 247 Then
+                .Range(fl6 & lblCount8.Caption).Value = sixthValue + A700
+           '     lblC700.Caption = lblC700.Caption + 1
+    '        ElseIf sixthPCI = 248 Then
+                .Range(fl6 & lblCount8.Caption).Value = sixthValue + A700
+           '     lblC700.Caption = lblC700.Caption + 1
+    '        End If
+        lblCount8.Caption = lblCount8.Caption + 1
+    Loop
+    
+    'seventh
+    Dim seventhValue As String
+    Dim seventhPCI As String
+    Do Until .Range(fl7 & lblCount9.Caption).Text = ""
+        seventhValue = .Range(fl7 & lblCount9.Caption).Text
+        seventhPCI = .Range("aj" & lblCount9.Caption).Text
+    '        If seventhPCI = 246 Then  'conditional on CellID
+    '            .Range(fl7 & lblCount9.Caption).Value = seventhValue + A700
+            '    lblC700.Caption = lblC700.Caption + 1
+    '        ElseIf seventhPCI = 247 Then
+    '            .Range(fl7 & lblCount9.Caption).Value = seventhValue + A700
+             '   lblC700.Caption = lblC700.Caption + 1
+    '        ElseIf seventhPCI = 248 Then
+                .Range(fl7 & lblCount9.Caption).Value = seventhValue + A700
+              '  lblC700.Caption = lblC700.Caption + 1
+    '        End If
+        lblCount9.Caption = lblCount9.Caption + 1
+    Loop
+    
+    'eighth
+    Dim eighthValue As String
+    Dim eighthPCI As String
+    Do Until .Range(fl8 & lblCount10.Caption).Text = ""
+        eighthValue = .Range(fl8 & lblCount10.Caption).Text
+        eigthPCI = .Range("an" & lblCount10.Caption).Text
+   '         If eighthPCI = 246 Then  'conditional on CellID
+   '             .Range(fl8 & lblCount10.Caption).Value = eighthValue + A700
+         '       lblC700.Caption = lblC700.Caption + 1
+   '         ElseIf eighthPCI = 247 Then
+   '             .Range(fl8 & lblCount10.Caption).Value = eighthValue + A700
+          '      lblC700.Caption = lblC700.Caption + 1
+   '         ElseIf eighthPCI = 248 Then
+                .Range(fl8 & lblCount10.Caption).Value = eighthValue + A700
+           '     lblC700.Caption = lblC700.Caption + 1
+    '        End If
+        lblCount10.Caption = lblCount10.Caption + 1
+            
+    Loop
+    
+    'ninth
+    Dim ninthValue As String
+    Dim ninthPCI As String
+    Do Until .Range(fl9 & lblCount11.Caption).Text = ""
+        ninthValue = .Range(fl9 & lblCount11.Caption).Text
+        ninthPCI = .Range("ar" & lblCount11.Caption).Text
+    '        If ninthPCI = 246 Then  'conditional on CellID
+    '            .Range(fl9 & lblCount11.Caption).Value = ninthValue + A700
+        '        lblC700.Caption = lblC700.Caption + 1
+    '        ElseIf ninthPCI = 247 Then
+    '            .Range(fl9 & lblCount11.Caption).Value = ninthValue + A700
+         '       lblC700.Caption = lblC700.Caption + 1
+    '        ElseIf ninthPCI = 248 Then
+                .Range(fl9 & lblCount11.Caption).Value = ninthValue + A700
+          '      lblC700.Caption = lblC700.Caption + 1
+     '       End If
+        lblCount11.Caption = lblCount11.Caption + 1
+    Loop
+    
+    'tenth
+    Dim tenthValue As String
+    Dim tenthPCI As String
+    Do Until .Range(fl10 & lblCount12.Caption).Text = ""
+        tenthValue = .Range(fl10 & lblCount12.Caption).Text
+        tenthPCI = .Range("av" & lblCount12.Caption).Text
+     '       If tenthPCI = 246 Then  'conditional on CellID
+     '           .Range(fl10 & lblCount12.Caption).Value = tenthValue + A700
+         '       lblC700.Caption = lblC700.Caption + 1
+     '       ElseIf tenthPCI = 247 Then
+     '           .Range(fl10 & lblCount12.Caption).Value = tenthValue + A700
+         '       lblC700.Caption = lblC700.Caption + 1
+     '       ElseIf tenthPCI = 248 Then
+                .Range(fl10 & lblCount12.Caption).Value = tenthValue + A700
+         '       lblC700.Caption = lblC700.Caption + 1
+    '        End If
+        lblCount12.Caption = lblCount12.Caption + 1
+    Loop
+End With
+End Sub
+
+Private Sub cmdATT850_Click()
+''''''''''''''''set workbook'''''''''''''''''''
+   ' Set Workbook = App.Workbooks.Open(Text1.Text & "\" & item(i))
+    Set Worksheet = Workbook.Sheets("ATT-850-UMTS")
+    
+    With Worksheet
+    'basement
+    Dim bValue As String
+    
+    
+    Do Until .Range(flB & lblCount1.Caption).Text = ""
+    bValue = .Range(flB & lblCount1.Caption).Text
+    .Range(flB & lblCount1.Caption).Value = bValue + A850
+    lblCount1.Caption = lblCount1.Caption + 1
+    Loop
+    
+    'ground
+    Dim gValue As String
+    Do Until .Range(flG & lblcount2.Caption).Text = ""
+    gValue = .Range(flG & lblcount2.Caption).Text
+    .Range(flG & lblcount2.Caption).Value = gValue + A850
+    lblcount2.Caption = lblcount2.Caption + 1
+    Loop
+    
+    'first
+    Dim firstValue As String
+    Do Until .Range(fl1 & lblcount3.Caption).Text = ""
+    firstValue = .Range(fl1 & lblcount3.Caption).Text
+    .Range(fl1 & lblcount3.Caption).Value = firstValue + A850
+    lblcount3.Caption = lblcount3.Caption + 1
+    Loop
+    
+    'second
+    Dim secondValue As String
+    Do Until .Range(fl2 & lbLcount4.Caption).Text = ""
+    secondValue = .Range(fl2 & lblcount3.Caption).Text
+    .Range(fl2 & lbLcount4.Caption).Value = secondValue + A850
+    lbLcount4.Caption = lbLcount4.Caption + 1
+    Loop
+    
+    'third
+    Dim thirdValue As String
+    Do Until .Range(fl3 & lblcount5.Caption).Text = ""
+    thirdValue = .Range(fl3 & lblcount5.Caption).Text
+    .Range(fl3 & lblcount5.Caption).Value = thirdValue + A850
+    lblcount5.Caption = lblcount5.Caption + 1
+    Loop
+    
+    'fourth
+    Dim fourthValue As String
+    Do Until .Range(fl4 & lblcount6.Caption).Text = ""
+    fourthValue = .Range(fl4 & lblcount6.Caption).Text
+    .Range(fl4 & lblcount6.Caption).Value = fourthValue + A850
+    lblcount6.Caption = lblcount6.Caption + 1
+    Loop
+    
+    'fifth
+    Dim fifthValue As String
+    Do Until .Range(fl5 & lblcount7.Caption).Text = ""
+    fifthValue = .Range(fl5 & lblcount7.Caption).Text
+    .Range(fl5 & lblcount7.Caption).Value = fifthValue + A850
+    lblcount7.Caption = lblcount7.Caption + 1
+    Loop
+    
+    'sixth
+    Dim sixthValue As String
+    Do Until .Range(fl6 & lblCount8.Caption).Text = ""
+    sixthValue = .Range(fl6 & lblCount8.Caption).Text
+    .Range(fl6 & lblCount8.Caption).Value = sixthValue + A850
+    lblCount8.Caption = lblCount8.Caption + 1
+    Loop
+    
+    'seventh
+    Dim seventhValue As String
+    Do Until .Range(fl7 & lblCount9.Caption).Text = ""
+    seventhValue = .Range(fl7 & lblCount9.Caption).Text
+    .Range(fl7 & lblCount9.Caption).Value = seventhValue + A850
+    lblCount9.Caption = lblCount9.Caption + 1
+    Loop
+    
+    'eighth
+    Dim eighthValue As String
+    Do Until .Range(fl8 & lblCount10.Caption).Text = ""
+    eighthValue = .Range(fl8 & lblCount10.Caption).Text
+    .Range(fl8 & lblCount10.Caption).Value = eighthValue + A850
+    lblCount10.Caption = lblCount10.Caption + 1
+    Loop
+    
+    'ninth
+    Dim ninthValue As String
+    Do Until .Range(fl9 & lblCount11.Caption).Text = ""
+    ninthValue = .Range(fl9 & lblCount11.Caption).Text
+    .Range(fl9 & lblCount11.Caption).Value = ninthValue + A850
+    lblCount11.Caption = lblCount11.Caption + 1
+    Loop
+    
+    'tenth
+    Dim tenthValue As String
+    Do Until .Range(fl10 & lblCount12.Caption).Text = ""
+    tenthValue = .Range(fl10 & lblCount12.Caption).Text
+    .Range(fl10 & lblCount12.Caption).Value = tenthValue + A850
+    lblCount12.Caption = lblCount12.Caption + 1
+    Loop
+End With
+End Sub
+
+Private Sub cmdReset_Click()
+
+
+
+flB = ""
+flG = ""
+fl1 = ""
+fl2 = ""
+fl3 = ""
+fl4 = ""
+fl5 = ""
+fl6 = ""
+fl7 = ""
+fl8 = ""
+fl9 = ""
+fl10 = ""
+
+chkB.Value = 0
+chkB.Enabled = True
+chkG.Value = 0
+chkB.Enabled = True
+chk1.Value = 0
+chk1.Enabled = True
+chk2.Value = 0
+chk2.Enabled = True
+chk3.Value = 0
+chk3.Enabled = True
+chk4.Value = 0
+chk4.Enabled = True
+chk5.Value = 0
+chk5.Enabled = True
+chk6.Value = 0
+chk6.Enabled = True
+chk7.Value = 0
+chk7.Enabled = True
+chk8.Value = 0
+chk8.Enabled = True
+chk9.Value = 0
+chk9.Enabled = True
+Chk10.Value = 0
+Chk10.Enabled = True
+
+
+MsgBox "All Cells Values Reset"
+End Sub
+
+Private Sub cmdReset2_Click()
+
+A700 = "0"
+A850 = "0"
+A1900 = "0"
+A2100 = "0"
+V700 = "0"
+V850 = "0"
+V1900 = "0"
+V2100 = "0"
+T700 = "0"
+T850 = "0"
+T1900 = "0"
+T2100 = "0"
+
+chkAtt700.Value = 0
+chkAtt700.Enabled = True
+chkATT850.Value = 0
+chkATT850.Enabled = True
+chkAtt1900.Value = 0
+chkAtt1900.Enabled = True
+chkATT2100.Value = 0
+chkATT2100.Enabled = True
+chkVzw700.Value = 0
+chkVzw700.Enabled = True
+chkVzw850.Value = 0
+chkVzw850.Enabled = True
+chkVzw1900.Value = 0
+chkVzw1900.Enabled = True
+chkVzw2100.Value = 0
+chkVzw2100.Enabled = True
+chkTmo700.Value = 0
+chkTmo700.Enabled = True
+chkTmo850.Value = 0
+chkTmo850.Enabled = True
+chkTmo1900.Value = 0
+chkTmo1900.Enabled = True
+chkTmo2100.Value = 0
+chkTmo2100.Enabled = True
+End Sub
+
+
+Private Sub cmdSet_Click()
+
+If cbo3.Text = "Signal Strength" Then
+chkB.Value = 1
+chkB.Enabled = False
+flB = "B"
+chkG.Value = 1
+chkG.Enabled = False
+flG = "F"
+chk1.Value = 1
+chk1.Enabled = False
+fl1 = "J"
+chk2.Value = 1
+chk2.Enabled = False
+fl2 = "N"
+chk3.Value = 1
+chk3.Enabled = False
+fl3 = "R"
+chk4.Value = 1
+chk4.Enabled = False
+fl4 = "V"
+chk5.Value = 1
+chk5.Enabled = False
+fl5 = "Z"
+chk6.Value = 1
+chk6.Enabled = False
+fl6 = "AD"
+chk7.Value = 1
+chk7.Enabled = False
+fl7 = "AH"
+chk8.Value = 1
+chk8.Enabled = False
+fl8 = "AL"
+chk9.Value = 1
+chk9.Enabled = False
+fl9 = "AP"
+Chk10.Value = 1
+Chk10.Enabled = False
+fl10 = "AT"
+Else
+
+
+If chkB.Enabled = True And chkB.Value = 1 Then
+    flB = cbo1.Text
+    chkB.Enabled = False
+ '   chkB.Value = 0
+    chkB.Caption = "B = " & cbo1.Text
+    MsgBox "Basement Set"
+End If
+
+If chkG.Enabled = True And chkG.Value = 1 Then
+    flG = cbo1.Text
+    chkG.Enabled = False
+  '  chkG.Value = 0
+    chkG.Caption = "G = " & cbo1.Text
+    MsgBox "Ground Floor Set"
+End If
+If chk1.Enabled = True And chk1.Value = 1 Then
+    fl1 = cbo1.Text
+    chk1.Enabled = False
+  '  chk1.Value = 0
+    chk1.Caption = "1 = " & cbo1.Text
+    MsgBox "First Floor Set"
+End If
+
+If chk2.Enabled = True And chk2.Value = 1 Then
+    fl2 = cbo.Text
+    chk2.Enabled = False
+  '  chk2.Value = 0
+    chk2.Caption = "2 = " & cbo1.Text
+    MsgBox "Second floor set"
+End If
+
+If chk3.Enabled = True And chk3.Value = 1 Then
+    fl3 = cbo.Text
+    chk3.Enabled = False
+  '  chk3.Value = 0
+    chk3.Caption = "3 = " & cbo1.Text
+    MsgBox "Third Floor Set"
+End If
+
+If chk4.Enabled = True And chk4.Value = 1 Then
+    fl4 = cbo1.Text
+    chk4.Enabled = False
+  '  ch4.Value = 0
+    chk4.Caption = "4 = " & cbo1.Text
+    MsgBox "Fourth Floor Set"
+End If
+
+If chk5.Enabled = True And chk5.Value = 1 Then
+    fl5 = cbo1.Text
+    chk5.Enabled = False
+  '  ch5.Value = 0
+    chk5.Caption = "5 = " & cbo1.Text
+    MsgBox "Fifth Floor Set"
+End If
+
+If chk6.Enabled = True And chk6.Value = 1 Then
+    fl6 = cbo.Text
+    chk6.Enabled = False
+   ' chk6.Value = 0
+    chk6.Caption = "6 = " & cbo1.Text
+    MsgBox "Sixth Floor Set"
+End If
+    
+If chk7.Enabled = True And chk7.Value = 1 Then
+    fl7 = cbo.Text
+    chk7.Enabled = False
+   ' chk7.Value = 0
+    chk7.Caption = "7 = " & cbo1.Text
+    MsgBox "Seventh Floor Set"
+End If
+
+If chk8.Enabled = True And chk8.Value = 1 Then
+    fl8 = cbo1.Text
+    chk8.Enabled = False
+  '  chk8.Value = 0
+    chk8.Caption = "8 = " & cbo1.Text
+    MsgBox "Eighth Floor Set"
+End If
+
+If chk9.Enabled = True And chk9.Value = 1 Then
+    fl9 = cbo1.Text
+    chk9.Enabled = False
+  '  chk9.Value = 0
+    chk9.Caption = "9 = " & cbo1.Text
+    MsgBox "Ninth Floor Set"
+End If
+
+If Chk10.Enabled = True And Chk10.Value = 1 Then
+    fl10 = cbo.Text
+    Chk10.Enabled = False
+  '  Chk10.Value = 0
+    Chk10.Caption = "10 = " & cbo1.Text
+    MsgBox "10th Floor Set"
+End If
+
+
+
+End If
+End Sub
+
+Private Sub cmdSet2_Click()
+
+
+If chkAtt700.Enabled And chkAtt700.Value = 1 Then
+A700 = cbo2.Text
+chkAtt700.Enabled = False
+chkAtt700.Caption = "A700=" & cbo2.Text
+MsgBox "ATT 700 Set"
+End If
+
+If chkATT850.Enabled And chkATT850.Value = 1 Then
+A850 = cbo2.Text
+chkATT850.Enabled = False
+chkATT850.Caption = "A850=" & cbo2.Text
+MsgBox "ATT 850 Set"
+End If
+
+If chkAtt1900.Enabled And chkAtt1900.Value = 1 Then
+A1900 = cbo2.Text
+chkAtt1900.Enabled = False
+chkAtt1900.Caption = "A1900=" & cbo2.Text
+MsgBox "ATT 1900 Set"
+End If
+
+If chkATT2100.Enabled And chkATT2100.Value = 1 Then
+A2100 = cbo2.Text
+chkATT2100.Enabled = False
+chkATT2100.Caption = "A2100=" & cbo2.Text
+MsgBox "ATT 2100 Set"
+End If
+
+If chkVzw700.Enabled And chkVzw700.Value = 1 Then
+V700 = cbo2.Text
+chkVzw700.Enabled = False
+chkVzw700.Caption = "V700=" & cbo2.Text
+MsgBox "VZW 700 Set"
+End If
+
+If chkVzw850.Enabled And chkVzw850.Value = 1 Then
+V850 = cbo2.Text
+chkVzw850.Enabled = False
+chkVzw850.Caption = "V850=" & cbo2.Text
+MsgBox "VZW 850 Set"
+End If
+
+If chkVzw1900.Enabled And chkVzw1900.Value = 1 Then
+V1900 = cbo2.Text
+chkVzw1900.Enabled = False
+chkVzw1900.Caption = "V1900=" & cbo2.Text
+MsgBox "VZW 1900 Set"
+End If
+
+If chkVzw2100.Enabled And chkVzw2100.Value = 1 Then
+V2100 = cbo2.Text
+chkVzw2100.Enabled = False
+chkVzw2100.Caption = "V2100=" & cbo2.Text
+MsgBox "VZW 2100 Set"
+End If
+
+If chkTmo700.Enabled And chkTmo700.Value = 1 Then
+T700 = cbo2.Text
+chkTmo700.Enabled = False
+chkTmo700.Caption = "T700=" & cbo2.Text
+MsgBox "TMO 700 Set"
+End If
+
+If chkTmo850.Enabled And chkTmo850.Value = 1 Then
+T850 = cbo2.Text
+chkTmo850.Enabled = False
+chkTmo850.Caption = "T850=" & cbo2.Text
+MsgBox "TMO 850 Set"
+End If
+
+If chkTmo1900.Enabled And chkTmo1900.Value = 1 Then
+T1900 = cbo2.Text
+chkTmo1900.Enabled = False
+chkTmo1900.Caption = "T1900=" & cbo2.Text
+MsgBox "TMO 1900 Set"
+End If
+
+If chkTmo2100.Enabled And chkTmo2100.Value = 1 Then
+T2100 = cbo2.Text
+chkTmo2100.Enabled = False
+chkTmo2100.Caption = "T2100=" & cbo2.Text
+MsgBox "TMO 2100 Set"
+End If
+
+End Sub
+
+Private Sub cmdTMO1900_Click()
+''''''''''''''''set workbook'''''''''''''''''''
+   ' Set Workbook = App.Workbooks.Open(Text1.Text & "\" & item(i))
+    countReset
+    frameCellCount.Caption = "With Tmo 1900"
+    
+    Set Worksheet = Workbook.Sheets("tmo-1900-gsm")
+    
+    With Worksheet
+    'basement
+    Dim bValue As String
+    
+    
+    Do Until .Range(flB & lblCount1.Caption).Text = ""
+    bValue = .Range(flB & lblCount1.Caption).Text
+    .Range(flB & lblCount1.Caption).Value = bValue + T1900
+    lblCount1.Caption = lblCount1.Caption + 1
+    Loop
+    
+    'ground
+    Dim gValue As String
+    Do Until .Range(flG & lblcount2.Caption).Text = ""
+    gValue = .Range(flG & lblcount2.Caption).Text
+    .Range(flG & lblcount2.Caption).Value = gValue + T1900
+    lblcount2.Caption = lblcount2.Caption + 1
+    Loop
+    
+    'first
+    Dim firstValue As String
+    Do Until .Range(fl1 & lblcount3.Caption).Text = ""
+    firstValue = .Range(fl1 & lblcount3.Caption).Text
+    .Range(fl1 & lblcount3.Caption).Value = firstValue + T1900
+    lblcount3.Caption = lblcount3.Caption + 1
+    Loop
+    
+    'second
+    Dim secondValue As String
+    Do Until .Range(fl2 & lbLcount4.Caption).Text = ""
+    secondValue = .Range(fl2 & lbLcount4.Caption).Text
+    .Range(fl2 & lbLcount4.Caption).Value = secondValue + T1900
+    lbLcount4.Caption = lbLcount4.Caption + 1
+    Loop
+    
+    'third
+    Dim thirdValue As String
+    Do Until .Range(fl3 & lblcount5.Caption).Text = ""
+    thirdValue = .Range(fl3 & lblcount5.Caption).Text
+    .Range(fl3 & lblcount5.Caption).Value = thirdValue + T1900
+    lblcount5.Caption = lblcount5.Caption + 1
+    Loop
+    
+    'fourth
+    Dim fourthValue As String
+    Do Until .Range(fl4 & lblcount6.Caption).Text = ""
+    fourthValue = .Range(fl4 & lblcount6.Caption).Text
+    .Range(fl4 & lblcount6.Caption).Value = fourthValue + T1900
+    lblcount6.Caption = lblcount6.Caption + 1
+    Loop
+    
+    'fifth
+    Dim fifthValue As String
+    Do Until .Range(fl5 & lblcount7.Caption).Text = ""
+    fifthValue = .Range(fl5 & lblcount7.Caption).Text
+    .Range(fl5 & lblcount7.Caption).Value = fifthValue + T1900
+    lblcount7.Caption = lblcount7.Caption + 1
+    Loop
+    
+    'sixth
+    Dim sixthValue As String
+    Do Until .Range(fl6 & lblCount8.Caption).Text = ""
+    sixthValue = .Range(fl6 & lblCount8.Caption).Text
+    .Range(fl6 & lblCount8.Caption).Value = sixthValue + T1900
+    lblCount8.Caption = lblCount8.Caption + 1
+    Loop
+    
+    'seventh
+    Dim seventhValue As String
+    Do Until .Range(fl7 & lblCount9.Caption).Text = ""
+    seventhValue = .Range(fl7 & lblCount9.Caption).Text
+    .Range(fl7 & lblCount9.Caption).Value = seventhValue + T1900
+    lblCount9.Caption = lblCount9.Caption + 1
+    Loop
+    
+    'eighth
+    Dim eighthValue As String
+    Do Until .Range(fl8 & lblCount10.Caption).Text = ""
+    eighthValue = .Range(fl8 & lblCount10.Caption).Text
+    .Range(fl8 & lblCount10.Caption).Value = eighthValue + T1900
+    lblCount10.Caption = lblCount10.Caption + 1
+    Loop
+    
+    'ninth
+    Dim ninthValue As String
+    Do Until .Range(fl9 & lblCount11.Caption).Text = ""
+    ninthValue = .Range(fl9 & lblCount11.Caption).Text
+    .Range(fl9 & lblCount11.Caption).Value = ninthValue + T1900
+    lblCount11.Caption = lblCount11.Caption + 1
+    Loop
+    
+    'tenth
+    Dim tenthValue As String
+    Do Until .Range(fl10 & lblCount12.Caption).Text = ""
+    tenthValue = .Range(fl10 & lblCount12.Caption).Text
+    .Range(fl10 & lblCount12.Caption).Value = tenthValue + T1900
+    lblCount12.Caption = lblCount12.Caption + 1
+    Loop
+End With
+End Sub
+
+Private Sub cmdTMO2100_Click()
+''''''''''''''''set workbook'''''''''''''''''''
+ 
+    
+    frameCellCount.Caption = "With Tmo 2100"
+    
+    Set Worksheet = Workbook.Sheets("TMO-2100-UMTS")
+    
+    With Worksheet
+    .EnableCalculation = False
+    'basement
+    Dim bValue As String
+    
+'     lbl1count.Caption = 2
+    Do Until .Range(flB & lblCount1.Caption).Text = ""
+    bValue = .Range(flB & lblCount1.Caption).Text
+    .Range(flB & lblCount1.Caption).Value = bValue + T2100
+    lblCount1.Caption = lblCount1.Caption + 1
+    Loop
+    
+    'ground
+    Dim gValue As String
+    Do Until .Range(flG & lblcount2.Caption).Text = ""
+    gValue = .Range(flG & lblcount2.Caption).Text
+    .Range(flG & lblcount2.Caption).Value = gValue + T2100
+    lblcount2.Caption = lblcount2.Caption + 1
+    Loop
+    
+    'first
+    Dim firstValue As String
+    Do Until .Range(fl1 & lblcount3.Caption).Text = ""
+    firstValue = .Range(fl1 & lblcount3.Caption).Text
+    .Range(fl1 & lblcount3.Caption).Value = firstValue + T2100
+    lblcount3.Caption = lblcount3.Caption + 1
+    Loop
+    
+    'second
+    Dim secondValue As String
+    Do Until .Range(fl2 & lbLcount4.Caption).Text = ""
+    secondValue = .Range(fl2 & lbLcount4.Caption).Text
+    .Range(fl2 & lbLcount4.Caption).Value = secondValue + T2100
+    lbLcount4.Caption = lbLcount4.Caption + 1
+    Loop
+    
+    'third
+    Dim thirdValue As String
+    Do Until .Range(fl3 & lblcount5.Caption).Text = ""
+    thirdValue = .Range(fl3 & lblcount5.Caption).Text
+    .Range(fl3 & lblcount5.Caption).Value = thirdValue + T2100
+    lblcount5.Caption = lblcount5.Caption + 1
+    Loop
+    
+    'fourth
+    Dim fourthValue As String
+    Do Until .Range(fl4 & lblcount6.Caption).Text = ""
+    fourthValue = .Range(fl4 & lblcount6.Caption).Text
+    .Range(fl4 & lblcount6.Caption).Value = fourthValue + T2100
+    lblcount6.Caption = lblcount6.Caption + 1
+    Loop
+    
+    'fifth
+    Dim fifthValue As String
+    Do Until .Range(fl5 & lblcount7.Caption).Text = ""
+    fifthValue = .Range(fl5 & lblcount7.Caption).Text
+    .Range(fl5 & lblcount7.Caption).Value = fifthValue + T2100
+    lblcount7.Caption = lblcount7.Caption + 1
+    Loop
+    
+    'sixth
+    Dim sixthValue As String
+    Do Until .Range(fl6 & lblCount8.Caption).Text = ""
+    sixthValue = .Range(fl6 & lblCount8.Caption).Text
+    .Range(fl6 & lblCount8.Caption).Value = sixthValue + T2100
+    lblCount8.Caption = lblCount8.Caption + 1
+    Loop
+    
+    'seventh
+    Dim seventhValue As String
+    Do Until .Range(fl7 & lblCount9.Caption).Text = ""
+    seventhValue = .Range(fl7 & lblCount9.Caption).Text
+    .Range(fl7 & lblCount9.Caption).Value = seventhValue + T2100
+    lblCount9.Caption = lblCount9.Caption + 1
+    Loop
+    
+    'eighth
+    Dim eighthValue As String
+    Do Until .Range(fl8 & lblCount10.Caption).Text = ""
+    eighthValue = .Range(fl8 & lblCount10.Caption).Text
+    .Range(fl8 & lblCount10.Caption).Value = eighthValue + T2100
+    lblCount10.Caption = lblCount10.Caption + 1
+    Loop
+    
+    'ninth
+    Dim ninthValue As String
+    Do Until .Range(fl9 & lblCount11.Caption).Text = ""
+    ninthValue = .Range(fl9 & lblCount11.Caption).Text
+    .Range(fl9 & lblCount11.Caption).Value = ninthValue + T2100
+    lblCount11.Caption = lblCount11.Caption + 1
+    Loop
+    
+    'tenth
+    Dim tenthValue As String
+    Do Until .Range(fl10 & lblCount12.Caption).Text = ""
+    tenthValue = .Range(fl10 & lblCount12.Caption).Text
+    .Range(fl10 & lblCount12.Caption).Value = tenthValue + T2100
+    lblCount12.Caption = lblCount12.Caption + 1
+    Loop
+    .EnableCalculation = True
+End With
+End Sub
+
+
+Private Sub cmdVZW1900_Click()
+''''''''''''''''set workbook'''''''''''''''''''
+  '  Set Workbook = App.Workbooks.Open(Text1.Text & "\" & item(i))
+    countReset
+    frameCellCount.Caption = "With Vzw 1900"
+    
+    Set Worksheet = Workbook.Sheets("1900")
+    
+    With Worksheet
+    .EnableCalculation = False
+    'basement
+    Dim bValue As String
+    
+'     lbl1count.Caption = 2
+    Do Until .Range(flB & lblCount1.Caption).Text = ""
+    bValue = .Range(flB & lblCount1.Caption).Text
+    .Range(flB & lblCount1.Caption).Value = bValue + V1900
+    lblCount1.Caption = lblCount1.Caption + 1
+    Loop
+    
+    'ground
+    Dim gValue As String
+    Do Until .Range(flG & lblcount2.Caption).Text = ""
+    gValue = .Range(flG & lblcount2.Caption).Text
+    .Range(flG & lblcount2.Caption).Value = gValue + V1900
+    lblcount2.Caption = lblcount2.Caption + 1
+    Loop
+    
+    'first
+    Dim firstValue As String
+    Do Until .Range(fl1 & lblcount3.Caption).Text = ""
+    firstValue = .Range(fl1 & lblcount3.Caption).Text
+    .Range(fl1 & lblcount3.Caption).Value = firstValue + V1900
+    lblcount3.Caption = lblcount3.Caption + 1
+    Loop
+    
+    'second
+    Dim secondValue As String
+    Do Until .Range(fl2 & lbLcount4.Caption).Text = ""
+    secondValue = .Range(fl2 & lbLcount4.Caption).Text
+    .Range(fl2 & lbLcount4.Caption).Value = secondValue + V1900
+    lbLcount4.Caption = lbLcount4.Caption + 1
+    Loop
+    
+    'third
+    Dim thirdValue As String
+    Do Until .Range(fl3 & lblcount5.Caption).Text = ""
+    thirdValue = .Range(fl3 & lblcount5.Caption).Text
+    .Range(fl3 & lblcount5.Caption).Value = thirdValue + V1900
+    lblcount5.Caption = lblcount5.Caption + 1
+    Loop
+    
+    'fourth
+    Dim fourthValue As String
+    Do Until .Range(fl4 & lblcount6.Caption).Text = ""
+    fourthValue = .Range(fl4 & lblcount6.Caption).Text
+    .Range(fl4 & lblcount6.Caption).Value = fourthValue + V1900
+    lblcount6.Caption = lblcount6.Caption + 1
+    Loop
+    
+    'fifth
+    Dim fifthValue As String
+    Do Until .Range(fl5 & lblcount7.Caption).Text = ""
+    fifthValue = .Range(fl5 & lblcount7.Caption).Text
+    .Range(fl5 & lblcount7.Caption).Value = fifthValue + V1900
+    lblcount7.Caption = lblcount7.Caption + 1
+    Loop
+    
+    'sixth
+    Dim sixthValue As String
+    Do Until .Range(fl6 & lblCount8.Caption).Text = ""
+    sixthValue = .Range(fl6 & lblCount8.Caption).Text
+    .Range(fl6 & lblCount8.Caption).Value = sixthValue + V1900
+    lblCount8.Caption = lblCount8.Caption + 1
+    Loop
+    
+    'seventh
+    Dim seventhValue As String
+    Do Until .Range(fl7 & lblCount9.Caption).Text = ""
+    seventhValue = .Range(fl7 & lblCount9.Caption).Text
+    .Range(fl7 & lblCount9.Caption).Value = seventhValue + V1900
+    lblCount9.Caption = lblCount9.Caption + 1
+    Loop
+    
+    'eighth
+    Dim eighthValue As String
+    Do Until .Range(fl8 & lblCount10.Caption).Text = ""
+    eighthValue = .Range(fl8 & lblCount10.Caption).Text
+    .Range(fl8 & lblCount10.Caption).Value = eighthValue + V1900
+    lblCount10.Caption = lblCount10.Caption + 1
+    Loop
+    
+    'ninth
+    Dim ninthValue As String
+    Do Until .Range(fl9 & lblCount11.Caption).Text = ""
+    ninthValue = .Range(fl9 & lblCount11.Caption).Text
+    .Range(fl9 & lblCount11.Caption).Value = ninthValue + V1900
+    lblCount11.Caption = lblCount11.Caption + 1
+    Loop
+    
+    'tenth
+    Dim tenthValue As String
+    Do Until .Range(fl10 & lblCount12.Caption).Text = ""
+    tenthValue = .Range(fl10 & lblCount12.Caption).Text
+    .Range(fl10 & lblCount12.Caption).Value = tenthValue + V1900
+    lblCount12.Caption = lblCount12.Caption + 1
+    Loop
+    .EnableCalculation = True
+End With
+End Sub
+
+Private Sub cmdVZW700_Click()
+''''''''''''''''set workbook'''''''''''''''''''
+  '  Set Workbook = App.Workbooks.Open(Text1.Text & "\" & item(i))
+    Set Worksheet = Workbook.Sheets("700")
+    
+    With Worksheet
+    .EnableCalculation = False
+    'basement
+    Dim bValue As String
+    
+    lblCount1.Caption = 2
+
+    Do Until .Range(flB & lblCount1.Caption).Text = ""
+    bValue = .Range(flB & lblCount1.Caption).Text
+    .Range(flB & lblCount1.Caption).Value = bValue + V700
+    lblCount1.Caption = lblCount1.Caption + 1
+    Loop
+    
+    'ground
+    Dim gValue As String
+    Do Until .Range(flG & lblcount2.Caption).Text = ""
+    gValue = .Range(flG & lblcount2.Caption).Text
+    .Range(flG & lblcount2.Caption).Value = gValue + V700
+    lblcount2.Caption = lblcount2.Caption + 1
+    Loop
+    
+    'first
+    Dim firstValue As String
+    Do Until .Range(fl1 & lblcount3.Caption).Text = ""
+    firstValue = .Range(fl1 & lblcount3.Caption).Text
+    .Range(fl1 & lblcount3.Caption).Value = firstValue + V700
+    lblcount3.Caption = lblcount3.Caption + 1
+    Loop
+    
+    'second
+    Dim secondValue As String
+    Do Until .Range(fl2 & lbLcount4.Caption).Text = ""
+    secondValue = .Range(fl2 & lbLcount4.Caption).Text
+    .Range(fl2 & lbLcount4.Caption).Value = secondValue + V700
+    lbLcount4.Caption = lbLcount4.Caption + 1
+    Loop
+    
+    'third
+    Dim thirdValue As String
+    Do Until .Range(fl3 & lblcount5.Caption).Text = ""
+    thirdValue = .Range(fl3 & lblcount5.Caption).Text
+    .Range(fl3 & lblcount5.Caption).Value = thirdValue + V700
+    lblcount5.Caption = lblcount5.Caption + 1
+    Loop
+    
+    'fourth
+    Dim fourthValue As String
+    Do Until .Range(fl4 & lblcount6.Caption).Text = ""
+    fourthValue = .Range(fl4 & lblcount6.Caption).Text
+    .Range(fl4 & lblcount6.Caption).Value = fourthValue + V700
+    lblcount6.Caption = lblcount6.Caption + 1
+    Loop
+    
+    'fifth
+    Dim fifthValue As String
+    Do Until .Range(fl5 & lblcount7.Caption).Text = ""
+    fifthValue = .Range(fl5 & lblcount7.Caption).Text
+    .Range(fl5 & lblcount7.Caption).Value = fifthValue + V700
+    lblcount7.Caption = lblcount7.Caption + 1
+    Loop
+    
+    'sixth
+    Dim sixthValue As String
+    Do Until .Range(fl6 & lblCount8.Caption).Text = ""
+    sixthValue = .Range(fl6 & lblCount8.Caption).Text
+    .Range(fl6 & lblCount8.Caption).Value = sixthValue + V700
+    lblCount8.Caption = lblCount8.Caption + 1
+    Loop
+    
+    'seventh
+    Dim seventhValue As String
+    Do Until .Range(fl7 & lblCount9.Caption).Text = ""
+    seventhValue = .Range(fl7 & lblCount9.Caption).Text
+    .Range(fl7 & lblCount9.Caption).Value = seventhValue + V700
+    lblCount9.Caption = lblCount9.Caption + 1
+    Loop
+    
+    'eighth
+    Dim eighthValue As String
+    Do Until .Range(fl8 & lblCount10.Caption).Text = ""
+    eighthValue = .Range(fl8 & lblCount10.Caption).Text
+    .Range(fl8 & lblCount10.Caption).Value = eighthValue + V700
+    lblCount10.Caption = lblCount10.Caption + 1
+    Loop
+    
+    'ninth
+    Dim ninthValue As String
+    Do Until .Range(fl9 & lblCount11.Caption).Text = ""
+    ninthValue = .Range(fl9 & lblCount11.Caption).Text
+    .Range(fl9 & lblCount11.Caption).Value = ninthValue + V700
+    lblCount11.Caption = lblCount11.Caption + 1
+    Loop
+    
+    'tenth
+    Dim tenthValue As String
+    Do Until .Range(fl10 & lblCount12.Caption).Text = ""
+    tenthValue = .Range(fl10 & lblCount12.Caption).Text
+    .Range(fl10 & lblCount12.Caption).Value = tenthValue + V700
+    lblCount12.Caption = lblCount12.Caption + 1
+    Loop
+    .EnableCalculation = True
+End With
+End Sub
+
+Private Sub cmdVZW850_Click()
+''''''''''''''''set workbook'''''''''''''''''''
+   ' Set Workbook = App.Workbooks.Open(Text1.Text & "\" & item(i))
+    countReset
+    frameCellCount.Caption = "With VZW 850"
+    Set Worksheet = Workbook.Sheets("850")
+    
+    With Worksheet
+    .EnableCalculation = False
+    'basement
+    Dim bValue As String
+    
+     'lbl1count.Caption = 2
+    Do Until .Range(flB & lblCount1.Caption).Text = ""
+    bValue = .Range(flB & lblCount1.Caption).Text
+    .Range(flB & lblCount1.Caption).Value = bValue + V850
+    lblCount1.Caption = lblCount1.Caption + 1
+    Loop
+    
+    'ground
+    Dim gValue As String
+    Do Until .Range(flG & lblcount2.Caption).Text = ""
+    gValue = .Range(flG & lblcount2.Caption).Text
+    .Range(flG & lblcount2.Caption).Value = gValue + V850
+    lblcount2.Caption = lblcount2.Caption + 1
+    Loop
+    
+    'first
+    Dim firstValue As String
+    Do Until .Range(fl1 & lblcount3.Caption).Text = ""
+    firstValue = .Range(fl1 & lblcount3.Caption).Text
+    .Range(fl1 & lblcount3.Caption).Value = firstValue + V850
+    lblcount3.Caption = lblcount3.Caption + 1
+    Loop
+    
+    'second
+    Dim secondValue As String
+    Do Until .Range(fl2 & lbLcount4.Caption).Text = ""
+    secondValue = .Range(fl2 & lbLcount4.Caption).Text
+    .Range(fl2 & lbLcount4.Caption).Value = "-89.25" + V850
+    lbLcount4.Caption = lbLcount4.Caption + 1
+    Loop
+    
+    'third
+    Dim thirdValue As String
+    Do Until .Range(fl3 & lblcount5.Caption).Text = ""
+    thirdValue = .Range(fl3 & lblcount5.Caption).Text
+    .Range(fl3 & lblcount5.Caption).Value = thirdValue + V850
+    lblcount5.Caption = lblcount5.Caption + 1
+    Loop
+    
+    'fourth
+    Dim fourthValue As String
+    Do Until .Range(fl4 & lblcount6.Caption).Text = ""
+    fourthValue = .Range(fl4 & lblcount6.Caption).Text
+    .Range(fl4 & lblcount6.Caption).Value = fourthValue + V850
+    lblcount6.Caption = lblcount6.Caption + 1
+    Loop
+    
+    'fifth
+    Dim fifthValue As String
+    Do Until .Range(fl5 & lblcount7.Caption).Text = ""
+    fifthValue = .Range(fl5 & lblcount7.Caption).Text
+    .Range(fl5 & lblcount7.Caption).Value = fifthValue + V850
+    lblcount7.Caption = lblcount7.Caption + 1
+    Loop
+    
+    'sixth
+    Dim sixthValue As String
+    Do Until .Range(fl6 & lblCount8.Caption).Text = ""
+    sixthValue = .Range(fl6 & lblCount8.Caption).Text
+    .Range(fl6 & lblCount8.Caption).Value = sixthValue + V850
+    lblCount8.Caption = lblCount8.Caption + 1
+    Loop
+    
+    'seventh
+    Dim seventhValue As String
+    Do Until .Range(fl7 & lblCount9.Caption).Text = ""
+    seventhValue = .Range(fl7 & lblCount9.Caption).Text
+    .Range(fl7 & lblCount9.Caption).Value = seventhValue + V850
+    lblCount9.Caption = lblCount9.Caption + 1
+    Loop
+    
+    'eighth
+    Dim eighthValue As String
+    Do Until .Range(fl8 & lblCount10.Caption).Text = ""
+    eighthValue = .Range(fl8 & lblCount10.Caption).Text
+    .Range(fl8 & lblCount10.Caption).Value = eighthValue + V850
+    lblCount10.Caption = lblCount10.Caption + 1
+    Loop
+    
+    'ninth
+    Dim ninthValue As String
+    Do Until .Range(fl9 & lblCount11.Caption).Text = ""
+    ninthValue = .Range(fl9 & lblCount11.Caption).Text
+    .Range(fl9 & lblCount11.Caption).Value = ninthValue + V850
+    lblCount11.Caption = lblCount11.Caption + 1
+    Loop
+    
+    'tenth
+    Dim tenthValue As String
+    Do Until .Range(fl10 & lblCount12.Caption).Text = ""
+    tenthValue = .Range(fl10 & lblCount12.Caption).Text
+    .Range(fl10 & lblCount12.Caption).Value = tenthValue + V850
+    lblCount12.Caption = lblCount12.Caption + 1
+    .EnableCalculation = True
+    Loop
+End With
+End Sub
+
+
+Private Sub cmdVZWEVDO_Click()
+''''''''''''''''set workbook'''''''''''''''''''
+   ' Set Workbook = App.Workbooks.Open(Text1.Text & "\" & item(i))
+    countReset
+    frameCellCount.Caption = "With Vzw EVDO"
+    Set Worksheet = Workbook.Sheets("vzw-850-evdo")
+    
+    With Worksheet
+    'basement
+    Dim bValue As String
+    
+   
+    Do Until .Range(flB & lblCount1.Caption).Text = ""
+    bValue = .Range(flB & lblCount1.Caption).Text
+    .Range(flB & lblCount1.Caption).Value = bValue + V850
+    lblCount1.Caption = lblCount1.Caption + 1
+    Loop
+    
+    'ground
+    Dim gValue As String
+    Do Until .Range(flG & lblcount2.Caption).Text = ""
+    gValue = .Range(flG & lblcount2.Caption).Text
+    .Range(flG & lblcount2.Caption).Value = gValue + V850
+    lblcount2.Caption = lblcount2.Caption + 1
+    Loop
+    
+    'first
+    Dim firstValue As String
+    Do Until .Range(fl1 & lblcount3.Caption).Text = ""
+    firstValue = .Range(fl1 & lblcount3.Caption).Text
+    .Range(fl1 & lblcount3.Caption).Value = firstValue + V850
+    lblcount3.Caption = lblcount3.Caption + 1
+    Loop
+    
+    'second
+    Dim secondValue As String
+    Do Until .Range(fl2 & lbLcount4.Caption).Text = ""
+    secondValue = .Range(fl2 & lbLcount4.Caption).Text
+    .Range(fl2 & lbLcount4.Caption).Value = secondValue + V850
+    lbLcount4.Caption = lbLcount4.Caption + 1
+    Loop
+    
+    'third
+    Dim thirdValue As String
+    Do Until .Range(fl3 & lblcount5.Caption).Text = ""
+    thirdValue = .Range(fl3 & lblcount5.Caption).Text
+    .Range(fl3 & lblcount5.Caption).Value = thirdValue + V850
+    lblcount5.Caption = lblcount5.Caption + 1
+    Loop
+    
+    'fourth
+    Dim fourthValue As String
+    Do Until .Range(fl4 & lblcount6.Caption).Text = ""
+    fourthValue = .Range(fl4 & lblcount6.Caption).Text
+    .Range(fl4 & lblcount6.Caption).Value = fourthValue + V850
+    lblcount6.Caption = lblcount6.Caption + 1
+    Loop
+    
+    'fifth
+    Dim fifthValue As String
+    Do Until .Range(fl5 & lblcount7.Caption).Text = ""
+    fifthValue = .Range(fl5 & lblcount7.Caption).Text
+    .Range(fl5 & lblcount7.Caption).Value = fifthValue + V850
+    lblcount7.Caption = lblcount7.Caption + 1
+    Loop
+    
+    'sixth
+    Dim sixthValue As String
+    Do Until .Range(fl6 & lblCount8.Caption).Text = ""
+    sixthValue = .Range(fl6 & lblCount8.Caption).Text
+    .Range(fl6 & lblCount8.Caption).Value = sixthValue + V850
+    lblCount8.Caption = lblCount8.Caption + 1
+    Loop
+    
+    'seventh
+    Dim seventhValue As String
+    Do Until .Range(fl7 & lblCount9.Caption).Text = ""
+    seventhValue = .Range(fl7 & lblCount9.Caption).Text
+    .Range(fl7 & lblCount9.Caption).Value = seventhValue + V850
+    lblCount9.Caption = lblCount9.Caption + 1
+    Loop
+    
+    'eighth
+    Dim eighthValue As String
+    Do Until .Range(fl8 & lblCount10.Caption).Text = ""
+    eighthValue = .Range(fl8 & lblCount10.Caption).Text
+    .Range(fl8 & lblCount10.Caption).Value = eighthValue + V850
+    lblCount10.Caption = lblCount10.Caption + 1
+    Loop
+    
+    'ninth
+    Dim ninthValue As String
+    Do Until .Range(fl9 & lblCount11.Caption).Text = ""
+    ninthValue = .Range(fl9 & lblCount11.Caption).Text
+    .Range(fl9 & lblCount11.Caption).Value = ninthValue + V850
+    lblCount11.Caption = lblCount11.Caption + 1
+    Loop
+    
+    'tenth
+    Dim tenthValue As String
+    Do Until .Range(fl10 & lblCount12.Caption).Text = ""
+    tenthValue = .Range(fl10 & lblCount12.Caption).Text
+    .Range(fl10 & lblCount12.Caption).Value = tenthValue + V850
+    lblCount12.Caption = lblCount12.Caption + 1
+    Loop
+    .EnableCalculation = True
+End With
+End Sub
+
+
+Private Sub Command1_Click()
+MsgBox Floor(b)
+End Sub
+
+Private Sub Command2_Click()
+openExcel
+
+End Sub
+
+Private Sub Form_Load()
+    lblCount1.Caption = 2
+    lblcount2.Caption = 2
+    lblcount3.Caption = 2
+    lbLcount4.Caption = 2
+    lblcount5.Caption = 2
+    lblcount6.Caption = 2
+    lblcount7.Caption = 2
+    lblCount8.Caption = 2
+    lblCount9.Caption = 2
+    lblCount10.Caption = 2
+    lblCount11.Caption = 2
+    lblCount12.Caption = 2
+Dim iChar As Integer
+Dim iNum As Integer
+
+sbUpdate.Panels(1).Text = "Status: Load I/O"
+
+For iChar = Asc("A") To Asc("Z")
+    cbo1.AddItem Chr(iChar)
+Next iChar
+
+For iNum = -20 To 30
+    cbo2.AddItem (iNum)
+Next iNum
+
+
+cbo3.AddItem "Signal Strength"
+cbo3.AddItem "Signal Quality"
+cbo3.AddItem "Cell ID"
+
+mnuRun1.Visible = False
+mnuRun2.Visible = False
+mnuRun3.Visible = False
+frameDataVal.Visible = False
+frameFloor.Visible = False
+frameCellCount.Visible = False
+
+mnuRun2.Enabled = False
+mnuRun3.Enabled = False
+End Sub
+
+Private Sub lblC700_Click()
+
+End Sub
+
+Private Sub mnuCLTE_Click()
+If List1.ListCount = 0 Then
+    MsgBox "Please load directory"
+    GoTo 0
+Else
+
+    Dim listnumber
+    Dim labelcaption As String
+    ' Open excel''''''''''''''''''''''''''''''
+    On Error Resume Next
+    Set App = GetObject(, "excel.application")
+    '''''''''''''''''''''''''''''''''''''''''
+    'if not found than create new instance
+        If Err.Number <> 0 Then
+            Set App = CreateObject("excel.application")
+        End If
+    Err.Clear
+    On Error GoTo 0
+    'Show excel
+    App.Visible = True
+    lblcount2.Caption = 2
+    'Read through list''''''''''''''''''''''''''''''''''''''
+
+    For i = 0 To List1.ListCount - 1
+    
+        ReDim Preserve Item(i)
+        Item(i) = List1.List(i)
+        ''''''''''''''''''''''''''''''''''''''''''''''
+        'Set status bar
+        sbUpdate.Panels(1).Text = "Working on " & Item(i)
+        ''''''''''''''''set workbook'''''''''''''''''''
+        Set Workbook = App.Workbooks.Open(Text1.Text & "\" & Item(i))
+        Set Worksheet = Workbook.Sheets("TopData Table")
+        'select cell and set value '''''''''''''''''''
+        Dim DVvalue As Integer
+        Dim datacount As Integer
+        With Worksheet
+            DVvalue = .Range("F4").Value
+            datacount = .Range("G4").Value
+        End With
+        With Workbook
+            .Save
+            .Close
+        End With
+        Set Workbook = App.Workbooks.Open(cdOutput.FileName)
+        Set Worksheet = Workbook.Sheets("Sheet1")
+        
+        
+        With Worksheet
+        
+            .Range("A" & lblcount2.Caption).Value = Item(i)
+            .Range("D" & lblcount2.Caption).Value = DVvalue / datacount
+           
+        End With
+        With Workbook
+            .Save
+            .Close
+        End With
+        lblcount2.Caption = lblcount2.Caption + 1
+    Next
+    End If
+0
+End Sub
+
+Private Sub mnuVerify_Click()
+
+frameCellCount.Visible = True
+countReset
+
+If Label1.Caption = "0" Then
+    MsgBox "Please load directory"
+    GoTo 0
+Else
+    Dim App As Object
+    Dim Workbook As Excel.Workbook
+    Dim Worksheet As Excel.Worksheet
+    Dim Item() As String
+    Dim listnumber
+    Dim labelcaption As String
+    Dim cellArr(0 To 10) As String
+    cellArr(0) = "G16"
+    cellArr(1) = "g28"
+    cellArr(2) = "g42"
+    cellArr(3) = "g56"
+    cellArr(4) = "g70"
+    cellArr(5) = "g83"
+    cellArr(6) = "g96"
+    cellArr(7) = "g109"
+    cellArr(8) = "g122"
+    cellArr(9) = "g135"
+    cellArr(10) = "g148"
+    
+    Dim SS(0 To 10) As String
+    SS(0) = "B"
+    SS(1) = "F"
+    SS(2) = "J"
+    SS(3) = "N"
+    SS(4) = "R"
+    SS(5) = "V"
+    SS(6) = "Z"
+    SS(7) = "AD"
+    SS(8) = "AH"
+    SS(9) = "AL"
+    SS(10) = "AP"
+    
+    Dim SQ(0 To 10) As String
+    SQ(0) = "C"
+    SQ(1) = "G"
+    SQ(2) = "K"
+    SQ(3) = "O"
+    SQ(4) = "S"
+    SQ(5) = "W"
+    SQ(6) = "AA"
+    SQ(7) = "AE"
+    SQ(8) = "AI"
+    SQ(9) = "AM"
+    SQ(10) = "AQ"
+    Dim RSRPmetric As Integer
+    RSRPmetric = InputBox("Enter RSRP Validation Metric:", "Validation Value")
+    
+    Dim SNRmetric As Integer
+    SNRmetric = InputBox("Enter SNR Validation Metric:", "Validation Value")
+    
+    ' Open excel''''''''''''''''''''''''''''''
+    On Error Resume Next
+    Set App = GetObject(, "excel.application")
+    
+    ''''''''''''''''''''''''''''''''''''''''''
+    
+    'if not found than create new instance
+    If Err.Number <> 0 Then
+        Set App = CreateObject("excel.application")
+    End If
+    Err.Clear
+    On Error GoTo 0
+    'Show excel
+    App.Visible = True
+    'Read through list''''''''''''''''''''''''''''''''''''''
+    For i = 0 To List1.ListCount - 1
+        ReDim Preserve Item(i)
+        Item(i) = List1.List(i)
+        ''''''''''''''''''''''''''''''''''''''''''''''
+    'Set status bar
+        sbUpdate.Panels(1).Text = " working on " & Item(i)
+        Set Workbook = App.Workbooks.Open(Text1.Text & "\" & Item(i))
+        Set Worksheet = Workbook.Sheets("TopData Table")
+        Dim CellCount As Long
+        lblCount12.Caption = 0
+        With Worksheet
+            For z = 0 To UBound(cellArr)
+                lblCount1.Caption = 2
+                CellCount = .Range(cellArr(z)).Value
+                If CellCount > 0 Then
+                    'MsgBox CellCount
+                    For x = 2 To CellCount
+                       Set Worksheet = Workbook.Sheets("VZW - 700 - LTE")
+                     '  Set Worksheet = Workbook.Sheets("VZW - 700 - LTE")
+                        With Worksheet
+                        'basement
+                            If .Range(SS(z) & lblCount1.Caption).Value > RSRPmetric Then
+                                If .Range(SQ(z) & lblCount1.Caption).Value > SNRmetric Then
+                                    lblCount12.Caption = lblCount12.Caption + 1
+                                End If
+                            End If
+                           
+                
+                            lblCount1.Caption = lblCount1.Caption + 1
+                        End With
+                    Next
+                End If
+            Next
+           .Range("f4").Value = lblCount12.Caption
+        End With
+         With Workbook
+                .Save
+                .Close
+            End With
+    Next
+0
+End If
+End Sub
+
+Public Function ValidateLTE(CC As String, WS As String)
+CellCount = .Range("G16").Value
+    If CellCount <> 0 Then
+        For lblCount1.Caption = 2 To CellCount
+        Set Worksheet = Workbook.Sheets("VZW - 700 - LTE")
+        With Worksheet
+            If .Range("B" & counter1).Value > -100 Then
+                If .Range("C" & counter1).Value > 0 Then
+                    lblCount12.Caption = lblCount12.Caption + 1
+                End If
+            End If
+        Next
+    End If
+End Function
+Private Sub tbrMenuOpts_ButtonClick(ByVal Button As MSComCtlLib.Button)
+ 
+Select Case Button.Key
+
+Case "Open"
+mnuIT_Click
+Case "Save"
+mnuOT_Click
+End Select
+End Sub
+
+Private Sub mnuDIR_Click()
+List1.Clear
+If Text1.Text = "" Then
+    MsgBox "Load a directory"
+Else
+    Dim Loc As String
+
+    Dim r As Long
+        r = SendMessageStr(List1.hwnd, &H18D, &H20, Text1.Text & "\*.*")
+        sbUpdate.Panels(2).Text = "Total Workbooks: " & List1.ListCount
+            If sbUpdate.Panels(3).Text <> "" And sbUpdate.Panels(4).Text <> "" Then
+                sbUpdate.Panels(1).Text = "Status: I/O & Directory Loaded: Run selected option"
+            Else
+                sbUpdate.Panels(1).Text = "Status: Input & Directory Loaded: Load output"
+            End If
+End If
+2
+End Sub
+
+Private Sub mnuIT_Click()
+List1.Clear
+  Dim FName As String
+FName = BrowseFolder("Select a folder to Insert Pictures", "My Computer")
+sbUpdate.Panels(3).Text = FName
+Text1.Text = FName
+sbUpdate.Panels(1).Text = "Status: Input loaded: : Load output"
+'mnuDIR = True
+If Text1.Text = "" Then
+    MsgBox "Load a directory"
+Else
+    Dim Loc As String
+
+    Dim r As Long
+        r = SendMessageStr(List1.hwnd, &H18D, &H20, Text1.Text & "\*.*")
+        lblListCount.Caption = List1.ListCount
+        sbUpdate.Panels(2).Text = "Total Workbooks: " & List1.ListCount & " Remaining Workbooks: " & lblListCount.Caption
+            If sbUpdate.Panels(3).Text <> "" And sbUpdate.Panels(4).Text <> "" Then
+                sbUpdate.Panels(1).Text = "Status: I/O & Directory Loaded: Run selected option"
+            Else
+                sbUpdate.Panels(1).Text = "Status: Input & Directory Loaded: Load output"
+            End If
+End If
+lblListCount.Caption = List1.ListCount
+2
+End Sub
+
+Private Sub mnuOT_Click()
+cdOutput.Filter = "Apps (*.xlsx)|*.xlsx|All files (*.*)|*.*"
+cdOutput.DefaultExt = "xlsx"
+cdOutput.DialogTitle = "Select File"
+cdOutput.ShowOpen
+sbUpdate.Panels(4).Text = cdOutput.FileName
+sbUpdate.Panels(1).Text = "Status: I/O loaded: Load Directory"
+If sbUpdate.Panels(2) <> "" Then
+sbUpdate.Panels(1).Text = "Status: I/O & Directory Loaded: Run selected option"
+mnuRun2.Enabled = True
+mnuRun3.Enabled = True
+End If
+End Sub
+
+Private Sub mnuRun_Click()
+If sbUpdate.Panels(2).Text = "" Then
+    MsgBox "Please load directory"
+    GoTo 0
+Else
+    Dim App As Object
+    Dim Workbook As Excel.Workbook
+    Dim Worksheet As Excel.Worksheet
+    Dim Item() As String
+    Dim listnumber
+    Dim labelcaption As String
+    ' Open excel''''''''''''''''''''''''''''''
+    On Error Resume Next
+    Set App = GetObject(, "excel.application")
+    '''''''''''''''''''''''''''''''''''''''''
+    'if not found than create new instance
+        If Err.Number <> 0 Then
+            Set App = CreateObject("excel.application")
+        End If
+    Err.Clear
+    On Error GoTo 0
+    'Show excel
+    App.Visible = True
+    'Read through list''''''''''''''''''''''''''''''''''''''
+    For i = 0 To List1.ListCount - 1
+        ReDim Preserve Item(i)
+        Item(i) = List1.List(i)
+        Set Workbook = App.Workbooks.Open(Text1.Text & Item(i))
+        Set Worksheet = Workbook.Sheets("Data Summary Table")
+        
+        ' Reference existing instance of PowerPoint
+        Set PPApp = GetObject(, "Powerpoint.Application")
+        ' Reference active presentation
+        Set PPPres = PPApp.ActivePresentation
+        PPApp.ActiveWindow.ViewType = ppViewSlide
+
+        For iCht = 1 To ActiveSheet.ChartObjects.Count
+            With ActiveSheet.ChartObjects(iCht).Chart
+        
+            ' get chart title
+                If .HasTitle Then
+                    sTitle = .ChartTitle.Text
+                Else
+                    sTitle = ""
+                End If
+        
+            ' remove title (or it will be redundant)
+            .HasTitle = False
+        
+            ' copy chart as a picture
+            .CopyPicture _
+                'Appearance:=xlScreen, Size:=xlScreen, Format:=xlPicture
+        
+            ' restore title
+                If Len(sTitle) > 0 Then
+                    .HasTitle = True
+                    .ChartTitle.Text = sTitle
+                End If
+            End With
+    
+    ' Add a new slide and paste in the chart
+    SlideCount = PPPres.Slides.Count
+    Set PPSlide = PPPres.Slides.Add(SlideCount + 1, ppLayoutTitleOnly)
+    PPApp.ActiveWindow.View.GotoSlide PPSlide.SlideIndex
+        With PPSlide
+            ' paste and select the chart picture
+            .Shapes.Paste.Select
+            ' align the chart
+            PPApp.ActiveWindow.Selection.ShapeRange.Align msoAlignCenters, True
+            PPApp.ActiveWindow.Selection.ShapeRange.Align msoAlignMiddles, True
+            .Shapes.Placeholders(1).TextFrame.TextRange.Text = sTitle
+        End With
+
+    Next
+Next
+' Clean up
+Set PPSlide = Nothing
+Set PPPres = Nothing
+Set PPApp = Nothing
+        
+    
+End Sub
+
+Private Sub mnuRun1_Click()
+countReset
+If List1.ListCount = 0 Then
+    MsgBox "Please load directory"
+    GoTo 0
+Else
+    
+
+  
+    Dim listnumber
+    Dim labelcaption As String
+    ' Open excel''''''''''''''''''''''''''''''
+    On Error Resume Next
+    Set App = GetObject(, "excel.application")
+    '''''''''''''''''''''''''''''''''''''''''
+    'if not found than create new instance
+        If Err.Number <> 0 Then
+            Set App = CreateObject("excel.application")
+        End If
+    Err.Clear
+    On Error GoTo 0
+    'Show excel
+    App.Visible = True
+
+    'Read through list''''''''''''''''''''''''''''''''''''''
+    For i = 0 To List1.ListCount - 1
+    ReDim Preserve Item(i)
+    Item(i) = List1.List(i)
+  'Set status bar
+    sbUpdate.Panels(1).Text = " Working on " & Item(i)
+ Set Workbook = App.Workbooks.Open(Text1.Text & "\" & Item(i))
+ 
+Set Worksheet = Workbook.Sheets("TopData Table")
+Worksheet.EnableCalculation = False
+Set Worksheet = Workbook.Sheets("square footage data table")
+Worksheet.EnableCalculation = False
+
+    Dim foundIt
+     foundIt = InStr(1, Item(i), "oDAS", vbTextCompare)
+        If foundIt <> 0 Then ' changed for topN only 3/30/14 orignally <>0
+ DoEvents
+            If chkAtt700.Value = 1 Then
+                cmdATT700 = True
+                countReset
+            End If
+
+            If chkATT850.Value = 1 Then
+                cmdATT850 = True
+                countReset
+            End If
+
+            If chkAtt1900.Value = 1 Then
+                cmdATT1900 = True
+                countReset
+            End If
+
+            If chkATT2100.Value = 1 Then
+                cmdATT2100 = True
+                countReset
+            End If
+
+            If chkVzw700.Value = 1 Then
+                cmdVZW700 = True
+                countReset
+            End If
+
+            If chkVzw850.Value = 1 Then
+                cmdVZW850 = True
+                cmdVZWEVDO = True
+                countReset
+            End If
+
+            If chkVzw1900.Value = 1 Then
+                cmdVZW1900 = True
+                countReset
+            End If
+
+            If chkVzw2100.Value = True Then
+                cmdVZW2100 = True
+                countReset
+            End If
+
+            If chkTmo700.Value = 1 Then
+                cmdTMO700 = True
+                countReset
+            End If
+
+            If chkTmo850.Value = 1 Then
+                cmdTMO850 = True
+                countReset
+            End If
+
+            If chkTmo1900.Value = 1 Then
+                cmdTMO1900 = True
+                countReset
+            End If
+
+            If chkTmo2100.Value = 1 Then
+                cmdTMO2100 = True
+                countReset
+            End If
+End If
+Set Worksheet = Workbook.Sheets("TopData Table")
+Worksheet.EnableCalculation = True
+Set Worksheet = Workbook.Sheets("square footage data table")
+Worksheet.EnableCalculation = True
+            With Workbook
+                .Save
+                .Close
+            End With
+    
+lblListCount.Caption = lblListCount.Caption - 1
+sbUpdate.Panels(2).Text = "Total Workbooks: " & List1.ListCount & " Remaining Workbooks: " & lblListCount.Caption
+    
+    Next i
+
+End If
+sbUpdate.Panels(1).Text = "Completed: Raw Cell Addition"
+0
+Set App = Nothing
+End Sub
+
+Private Sub mnuRun2_Click()
+countReset
+If Label1.Caption = "0" Then
+MsgBox "Please load directory"
+GoTo 1
+
+Else
+'Dim App As Object
+'Dim Workbook As Excel.Workbook
+'Dim Worksheet As Excel.Worksheet
+'Dim Item() As String
+Dim listnumber
+Dim labelcaption As String
+
+
+
+
+' Open excel''''''''''''''''''''''''''''''
+On Error Resume Next
+Set App = GetObject(, "excel.application")
+
+''''''''''''''''''''''''''''''''''''''''''
+
+'if not found than create new instance
+If Err.Number <> 0 Then
+    Set App = CreateObject("excel.application")
+End If
+Err.Clear
+On Error GoTo 0
+
+
+
+
+''''''''''''''''''''''''''''''''''''''''''''
+
+
+
+'Show excel
+App.Visible = True
+
+'Read through list''''''''''''''''''''''''''''''''''''''
+For i = 0 To List1.ListCount - 1
+    ReDim Preserve Item(i)
+    Item(i) = List1.List(i)
+    
+''''''''''''''''''''''''''''''''''''''''''''''
+'Set status bar
+sbUpdate.Panels(1).Text = " working on " & Item(i)
+
+
+Set Workbook = App.Workbooks.Open(Text1.Text & "\" & Item(i))
+
+
+Set Worksheet = Workbook.Sheets("TopData Table")
+
+'select cell and set value '''''''''''''''''''
+
+With Worksheet
+
+
+'Basement Floor
+''''''''''''''''''''VERIZON''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y16").Value = "=IFERROR(LARGE('VZW-700-LTE'!B:B,'TopData Table'!V16),0)" '
+.Range("Y17").Value = "=IFERROR(LARGE('VZW-850-CDMA'!B:B,'TopData Table'!V17),0)" '
+.Range("Y18").Value = "=IFERROR(LARGE('VZW-850-EVDO'!B:B,'TopData Table'!V18),0)" '
+.Range("Y19").Value = "=IFERROR(LARGE('VZW-1900-EVDO'!B:B,'TopData Table'!V19),0)" '
+''''''''''''''''''''''ATT''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y20").Value = "=IFERROR(LARGE('ATT-700-LTE'!B:B,'TopData Table'!V20),0)"
+.Range("Y21").Value = "=IFERROR(LARGE('ATT-1900-UMTS'!B:B,'TopData Table'!V21),0)"
+'''''''''''''''''''''TMO'''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y22").Value = "=IFERROR(LARGE('TMO-1900-UMTS'!B:B,'TopData Table'!V22),0)"
+.Range("Y23").Value = "=IFERROR(LARGE('TMO-1900-GSM'!B:B,'TopData Table'!V23),0)"
+.Range("Y24").Value = "=IFERROR(LARGE('TMO-2100-UMTS'!B:B,'TopData Table'!V24),0)"
+'1st Floor
+''''''''''''''''''''VERIZON''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y28").Value = "=IFERROR(LARGE('VZW-700-LTE'!F:F,'TopData Table'!V28),0)" '
+.Range("Y29").Value = "=IFERROR(LARGE('VZW-850-CDMA'!F:F,'TopData Table'!V29),0)" '
+.Range("Y30").Value = "=IFERROR(LARGE('VZW-850-EVDO'!F:F,'TopData Table'!V30),0)" '
+.Range("Y31").Value = "=IFERROR(LARGE('VZW-1900-EVDO'!F:F,'TopData Table'!V31),0)" '
+''''''''''''''''''''''ATT''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y33").Value = "=IFERROR(LARGE('ATT-700-LTE'!F:F,'TopData Table'!V33),0)"
+.Range("Y34").Value = "=IFERROR(LARGE('ATT-1900-UMTS'!F:F,'TopData Table'!V34),0)"
+'''''''''''''''''''''TMO'''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y35").Value = "=IFERROR(LARGE('TMO-1900-UMTS'!F:F,'TopData Table'!V35),0)"
+.Range("Y36").Value = "=IFERROR(LARGE('TMO-1900-GSM'!F:F,'TopData Table'!V36),0)"
+.Range("Y37").Value = "=IFERROR(LARGE('TMO-2100-UMTS'!F:F,'TopData Table'!V37),0)"
+'2nd Floor
+''''''''''''''''''''VERIZON''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y42").Value = "=IFERROR(LARGE('VZW-700-LTE'!J:J,'TopData Table'!V42),0)" '
+.Range("Y43").Value = "=IFERROR(LARGE('VZW-850-CDMA'!J:J,'TopData Table'!V43),0)" '
+.Range("Y44").Value = "=IFERROR(LARGE('VZW-850-EVDO'!J:J,'TopData Table'!V44),0)" '
+.Range("Y45").Value = "=IFERROR(LARGE('VZW-1900-EVDO'!J:J,'TopData Table'!V45),0)" '
+''''''''''''''''''''''ATT''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y47").Value = "=IFERROR(LARGE('ATT-700-LTE'!J:J,'TopData Table'!V47),0)"
+.Range("Y48").Value = "=IFERROR(LARGE('ATT-1900-UMTS'!J:J,'TopData Table'!V48),0)"
+'''''''''''''''''''''TMO'''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y49").Value = "=IFERROR(LARGE('TMO-1900-UMTS'!J:J,'TopData Table'!V49),0)"
+.Range("Y50").Value = "=IFERROR(LARGE('TMO-1900-GSM'!J:J,'TopData Table'!V50),0)"
+.Range("Y51").Value = "=IFERROR(LARGE('TMO-2100-UMTS'!J:J,'TopData Table'!V51),0)"
+'3rd Floor
+''''''''''''''''''''VERIZON''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y56").Value = "=IFERROR(LARGE('VZW-700-LTE'!N:N,'TopData Table'!V56),0)" '
+.Range("Y57").Value = "=IFERROR(LARGE('VZW-850-CDMA'!N:N,'TopData Table'!V57),0)" '
+.Range("Y58").Value = "=IFERROR(LARGE('VZW-850-EVDO'!N:N,'TopData Table'!V58),0)" '
+.Range("Y59").Value = "=IFERROR(LARGE('VZW-1900-EVDO'!N:N,'TopData Table'!V59),0)" '
+''''''''''''''''''''''ATT''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y61").Value = "=IFERROR(LARGE('ATT-700-LTE'!N:N,'TopData Table'!V61),0)"
+.Range("Y62").Value = "=IFERROR(LARGE('ATT-1900-UMTS'!N:N,'TopData Table'!V62),0)"
+'''''''''''''''''''''TMO'''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y63").Value = "=IFERROR(LARGE('TMO-1900-UMTS'!N:N,'TopData Table'!V63),0)"
+.Range("Y64").Value = "=IFERROR(LARGE('TMO-1900-GSM'!N:N,'TopData Table'!V64),0)"
+.Range("Y65").Value = "=IFERROR(LARGE('TMO-2100-UMTS'!N:N,'TopData Table'!V65),0)"
+'4th Floor
+''''''''''''''''''''VERIZON''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y70").Value = "=IFERROR(LARGE('VZW-700-LTE'!R:R,'TopData Table'!V70),0)" '
+.Range("Y71").Value = "=IFERROR(LARGE('VZW-850-CDMA'!R:R,'TopData Table'!V71),0)" '
+.Range("Y72").Value = "=IFERROR(LARGE('VZW-850-EVDO'!R:R,'TopData Table'!V72),0)" '
+.Range("Y73").Value = "=IFERROR(LARGE('VZW-1900-EVDO'!R:R,'TopData Table'!V73),0)" '
+''''''''''''''''''''''ATT''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y74").Value = "=IFERROR(LARGE('ATT-700-LTE'!R:R,'TopData Table'!V74),0)"
+.Range("Y75").Value = "=IFERROR(LARGE('ATT-1900-UMTS'!R:R,'TopData Table'!V75),0)"
+'''''''''''''''''''''TMO'''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y76").Value = "=IFERROR(LARGE('TMO-1900-UMTS'!R:R,'TopData Table'!V76),0)"
+.Range("Y77").Value = "=IFERROR(LARGE('TMO-1900-GSM'!R:R,'TopData Table'!V77),0)"
+.Range("Y78").Value = "=IFERROR(LARGE('TMO-2100-UMTS'!R:R,'TopData Table'!V78),0)"
+'5th Floor
+''''''''''''''''''''VERIZON''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y83").Value = "=IFERROR(LARGE('VZW-700-LTE'!V:V,'TopData Table'!V83),0)" '
+.Range("Y84").Value = "=IFERROR(LARGE('VZW-850-CDMA'!V:V,'TopData Table'!V84),0)" '
+.Range("Y85").Value = "=IFERROR(LARGE('VZW-850-EVDO'!V:V,'TopData Table'!V85),0)" '
+.Range("Y86").Value = "=IFERROR(LARGE('VZW-1900-EVDO'!V:V,'TopData Table'!V86),0)" '
+''''''''''''''''''''''ATT''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y87").Value = "=IFERROR(LARGE('ATT-700-LTE'!V:V,'TopData Table'!V87),0)"
+.Range("Y88").Value = "=IFERROR(LARGE('ATT-1900-UMTS'!V:V,'TopData Table'!V88),0)"
+'''''''''''''''''''''TMO'''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y89").Value = "=IFERROR(LARGE('TMO-1900-UMTS'!V:V,'TopData Table'!V89),0)"
+.Range("Y90").Value = "=IFERROR(LARGE('TMO-1900-GSM'!V:V,'TopData Table'!V90),0)"
+.Range("Y91").Value = "=IFERROR(LARGE('TMO-2100-UMTS'!V:V,'TopData Table'!V91),0)"
+'6th Floor
+''''''''''''''''''''VERIZON''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y96").Value = "=IFERROR(LARGE('VZW-700-LTE'!Z:Z,'TopData Table'!V96),0)" '
+.Range("Y97").Value = "=IFERROR(LARGE('VZW-850-CDMA'!Z:Z,'TopData Table'!V97),0)" '
+.Range("Y98").Value = "=IFERROR(LARGE('VZW-850-EVDO'!Z:Z,'TopData Table'!V98),0)" '
+.Range("Y99").Value = "=IFERROR(LARGE('VZW-1900-EVDO'!Z:Z,'TopData Table'!V99),0)" '
+''''''''''''''''''''''ATT''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y100").Value = "=IFERROR(LARGE('ATT-700-LTE'!Z:Z,'TopData Table'!V100),0)"
+.Range("Y101").Value = "=IFERROR(LARGE('ATT-1900-UMTS'!Z:Z,'TopData Table'!V101),0)"
+'''''''''''''''''''''TMO'''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y102").Value = "=IFERROR(LARGE('TMO-1900-UMTS'!Z:Z,'TopData Table'!V102),0)"
+.Range("Y103").Value = "=IFERROR(LARGE('TMO-1900-GSM'!Z:Z,'TopData Table'!V103),0)"
+.Range("Y104").Value = "=IFERROR(LARGE('TMO-2100-UMTS'!Z:Z,'TopData Table'!V104),0)"
+'7th Floor
+''''''''''''''''''''VERIZON''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y109").Value = "=IFERROR(LARGE('VZW-700-LTE'!AD:AD,'TopData Table'!V109),0)" '
+.Range("Y110").Value = "=IFERROR(LARGE('VZW-850-CDMA'!AD:AD,'TopData Table'!V110),0)" '
+.Range("Y111").Value = "=IFERROR(LARGE('VZW-850-EVDO'!AD:AD,'TopData Table'!V111),0)" '
+.Range("Y112").Value = "=IFERROR(LARGE('VZW-1900-EVDO'!AD:AD,'TopData Table'!V112),0)" '
+''''''''''''''''''''''ATT''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y113").Value = "=IFERROR(LARGE('ATT-700-LTE'!AD:AD,'TopData Table'!V113),0)"
+.Range("Y114").Value = "=IFERROR(LARGE('ATT-1900-UMTS'!AD:AD,'TopData Table'!V114),0)"
+'''''''''''''''''''''TMO'''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y115").Value = "=IFERROR(LARGE('TMO-1900-UMTS'!AD:AD,'TopData Table'!V115),0)"
+.Range("Y116").Value = "=IFERROR(LARGE('TMO-1900-GSM'!AD:AD,'TopData Table'!V116),0)"
+.Range("Y117").Value = "=IFERROR(LARGE('TMO-2100-UMTS'!AD:AD,'TopData Table'!V117),0)"
+'8th Floor
+''''''''''''''''''''VERIZON''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y122").Value = "=IFERROR(LARGE('VZW-700-LTE'!AH:AH,'TopData Table'!V122),0)" '
+.Range("Y123").Value = "=IFERROR(LARGE('VZW-850-CDMA'!AH:AH,'TopData Table'!V123),0)" '
+.Range("Y124").Value = "=IFERROR(LARGE('VZW-850-EVDO'!AH:AH,'TopData Table'!V124),0)" '
+.Range("Y125").Value = "=IFERROR(LARGE('VZW-1900-EVDO'!AH:AH,'TopData Table'!V125),0)" '
+''''''''''''''''''''''ATT''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y126").Value = "=IFERROR(LARGE('ATT-700-LTE'!AH:AH,'TopData Table'!V126),0)"
+.Range("Y127").Value = "=IFERROR(LARGE('ATT-1900-UMTS'!AH:AH,'TopData Table'!V127),0)"
+'''''''''''''''''''''TMO'''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y128").Value = "=IFERROR(LARGE('TMO-1900-UMTS'!AH:AH,'TopData Table'!V128),0)"
+.Range("Y129").Value = "=IFERROR(LARGE('TMO-1900-GSM'!AH:AH,'TopData Table'!V129),0)"
+.Range("Y130").Value = "=IFERROR(LARGE('TMO-2100-UMTS'!AH:AH,'TopData Table'!V130),0)"
+'9th Floor
+''''''''''''''''''''VERIZON''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y135").Value = "=IFERROR(LARGE('VZW-700-LTE'!AL:AL,'TopData Table'!V135),0)" '
+.Range("Y136").Value = "=IFERROR(LARGE('VZW-850-CDMA'!AL:AL,'TopData Table'!V136),0)" '
+.Range("Y137").Value = "=IFERROR(LARGE('VZW-850-EVDO'!AL:AL,'TopData Table'!V137),0)" '
+.Range("Y138").Value = "=IFERROR(LARGE('VZW-1900-EVDO'!AL:AL,'TopData Table'!V138),0)" '
+''''''''''''''''''''''ATT''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y139").Value = "=IFERROR(LARGE('ATT-700-LTE'!AL:AL,'TopData Table'!V139),0)"
+.Range("Y140").Value = "=IFERROR(LARGE('ATT-1900-UMTS'!AL:AL,'TopData Table'!V140),0)"
+'''''''''''''''''''''TMO'''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y141").Value = "=IFERROR(LARGE('TMO-1900-UMTS'!AL:AL,'TopData Table'!V141),0)"
+.Range("Y142").Value = "=IFERROR(LARGE('TMO-1900-GSM'!AL:AL,'TopData Table'!V142),0)"
+.Range("Y143").Value = "=IFERROR(LARGE('TMO-2100-UMTS'!AL:AL,'TopData Table'!V143),0)"
+'10th Floor
+''''''''''''''''''''VERIZON''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y148").Value = "=IFERROR(LARGE('VZW-700-LTE'!AL:AL,'TopData Table'!V148),0)" '
+.Range("Y149").Value = "=IFERROR(LARGE('VZW-850-CDMA'!AL:AL,'TopData Table'!V149),0)" '
+.Range("Y150").Value = "=IFERROR(LARGE('VZW-850-EVDO'!AL:AL,'TopData Table'!V150),0)" '
+.Range("Y151").Value = "=IFERROR(LARGE('VZW-1900-EVDO'!AL:AL,'TopData Table'!V151),0)" '
+''''''''''''''''''''''ATT''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y152").Value = "=IFERROR(LARGE('ATT-700-LTE'!AL:AL,'TopData Table'!V152),0)"
+.Range("Y153").Value = "=IFERROR(LARGE('ATT-1900-UMTS'!AL:AL,'TopData Table'!V153),0)"
+'''''''''''''''''''''TMO'''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("Y154").Value = "=IFERROR(LARGE('TMO-1900-UMTS'!AL:AL,'TopData Table'!V154),0)"
+.Range("Y155").Value = "=IFERROR(LARGE('TMO-1900-GSM'!AL:AL,'TopData Table'!V155),0)"
+.Range("Y156").Value = "=IFERROR(LARGE('TMO-2100-UMTS'!AL:AL,'TopData Table'!V156),0)"
+End With
+'''''''''''''''''''''''''ADD NEW SHEET''''''''''''''''''
+Workbook.Worksheets.Add
+
+''''''''''''''''''''''''Focus on new sheet''''''''''''''''''''
+
+Set Worksheet = Workbook.Sheets("Sheet1")
+
+With Worksheet
+'''''''''''''''''''''''''''''''Add data''''''''''''''''''''
+.Range("A1").Value = ""
+.Range("A2").Value = "Basement"
+.Range("A3").Value = "1st Floor"
+.Range("A4").Value = "2nd Floor"
+.Range("A5").Value = "3rd Floor"
+.Range("A6").Value = "4th Floor"
+.Range("A7").Value = "5th Floor"
+.Range("A8").Value = "6th Floor"
+.Range("A9").Value = "7th Floor"
+.Range("A10").Value = "8th Floor"
+.Range("A11").Value = "9th Floor"
+.Range("A12").Value = "10th Floor"
+
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("B1").Value = "VZW 700"
+.Range("B2").Value = "='TopData Table'!Y16"
+.Range("B3").Value = "='TopData Table'!Y28"
+.Range("B4").Value = "='TopData Table'!Y42"
+.Range("B5").Value = "='TopData Table'!Y56"
+.Range("B6").Value = "='TopData Table'!Y70"
+.Range("B7").Value = "='TopData Table'!Y83"
+.Range("B8").Value = "='TopData Table'!Y96"
+.Range("B9").Value = "='TopData Table'!Y109"
+.Range("B10").Value = "='TopData Table'!Y122"
+.Range("B11").Value = "='TopData Table'!Y135"
+.Range("B12").Value = "='TopData Table'!Y148"
+.Range("B13").Value = "=AVERAGEIF(B2:B12," & Chr$(34) & "< 0" & Chr$(34) & ")"
+
+Dim vzw700
+vzw700 = .Range("b13").Value
+
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("c1").Value = "VZW 850"
+.Range("c2").Value = "='TopData Table'!Y17"
+.Range("c3").Value = "='TopData Table'!Y29"
+.Range("c4").Value = "='TopData Table'!Y43"
+.Range("c5").Value = "='TopData Table'!Y57"
+.Range("c6").Value = "='TopData Table'!Y71"
+.Range("c7").Value = "='TopData Table'!Y84"
+.Range("c8").Value = "='TopData Table'!Y97"
+.Range("c9").Value = "='TopData Table'!Y110"
+.Range("c10").Value = "='TopData Table'!Y123"
+.Range("c11").Value = "='TopData Table'!Y136"
+.Range("c12").Value = "='TopData Table'!Y149"
+.Range("c13").Value = "=AVERAGEIF(c2:c12," & Chr$(34) & "< 0" & Chr$(34) & ")"
+
+Dim vzw850
+vzw850 = .Range("c13").Value
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("d1").Value = "VZW 8 DO"
+.Range("d2").Value = "='TopData Table'!Y18"
+.Range("d3").Value = "='TopData Table'!Y30"
+.Range("d4").Value = "='TopData Table'!Y44"
+.Range("d5").Value = "='TopData Table'!Y58"
+.Range("d6").Value = "='TopData Table'!Y72"
+.Range("d7").Value = "='TopData Table'!Y85"
+.Range("d8").Value = "='TopData Table'!Y98"
+.Range("d9").Value = "='TopData Table'!Y111"
+.Range("d10").Value = "='TopData Table'!Y124"
+.Range("d11").Value = "='TopData Table'!Y137"
+.Range("d12").Value = "='TopData Table'!Y150"
+.Range("d13").Value = "=AVERAGEIF(d2:d12," & Chr$(34) & "< 0" & Chr$(34) & ")"
+
+Dim vzw850do
+vzw850do = .Range("d13").Value
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("e1").Value = "VZW 1900"
+.Range("e2").Value = "='TopData Table'!Y19"
+.Range("e3").Value = "='TopData Table'!Y31"
+.Range("e4").Value = "='TopData Table'!Y45"
+.Range("e5").Value = "='TopData Table'!Y59"
+.Range("e6").Value = "='TopData Table'!Y73"
+.Range("e7").Value = "='TopData Table'!Y86"
+.Range("e8").Value = "='TopData Table'!Y99"
+.Range("e9").Value = "='TopData Table'!Y112"
+.Range("e10").Value = "='TopData Table'!Y125"
+.Range("e11").Value = "='TopData Table'!Y138"
+.Range("e12").Value = "='TopData Table'!Y151"
+.Range("e13").Value = "=AVERAGEIF(e2:e12," & Chr$(34) & "< 0" & Chr$(34) & ")"
+
+Dim vzw1900
+vzw1900 = .Range("e13").Value
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("f1").Value = "ATT 700"
+.Range("f2").Value = "='TopData Table'!Y20"
+.Range("f3").Value = "='TopData Table'!Y33"
+.Range("f4").Value = "='TopData Table'!Y47"
+.Range("f5").Value = "='TopData Table'!Y61"
+.Range("f6").Value = "='TopData Table'!Y74"
+.Range("f7").Value = "='TopData Table'!Y87"
+.Range("f8").Value = "='TopData Table'!Y100"
+.Range("f9").Value = "='TopData Table'!Y113"
+.Range("f10").Value = "='TopData Table'!Y126"
+.Range("f11").Value = "='TopData Table'!Y139"
+.Range("f12").Value = "='TopData Table'!Y152"
+.Range("f13").Value = "=AVERAGEIF(f2:f12," & Chr$(34) & "< 0" & Chr$(34) & ")"
+
+Dim att700
+att700 = .Range("f13").Value
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("g1").Value = "ATT 1900"
+.Range("g2").Value = "='TopData Table'!Y21"
+.Range("g3").Value = "='TopData Table'!Y34"
+.Range("g4").Value = "='TopData Table'!Y48"
+.Range("g5").Value = "='TopData Table'!Y62"
+.Range("g6").Value = "='TopData Table'!Y75"
+.Range("g7").Value = "='TopData Table'!Y88"
+.Range("g8").Value = "='TopData Table'!Y101"
+.Range("g9").Value = "='TopData Table'!Y114"
+.Range("g10").Value = "='TopData Table'!Y127"
+.Range("g11").Value = "='TopData Table'!Y140"
+.Range("g12").Value = "='TopData Table'!Y153"
+.Range("g13").Value = "=AVERAGEIF(g2:g12," & Chr$(34) & "< 0" & Chr$(34) & ")"
+
+Dim att1900
+att1900 = .Range("g13").Value
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("h1").Value = "TMO 19 UMTS"
+.Range("h2").Value = "='TopData Table'!Y22"
+.Range("h3").Value = "='TopData Table'!Y35"
+.Range("h4").Value = "='TopData Table'!Y49"
+.Range("h5").Value = "='TopData Table'!Y63"
+.Range("h6").Value = "='TopData Table'!Y76"
+.Range("h7").Value = "='TopData Table'!Y89"
+.Range("h8").Value = "='TopData Table'!Y102"
+.Range("h9").Value = "='TopData Table'!Y115"
+.Range("h10").Value = "='TopData Table'!Y128"
+.Range("h11").Value = "='TopData Table'!Y141"
+.Range("h12").Value = "='TopData Table'!Y154"
+.Range("h13").Value = "=AVERAGEIF(h2:h12," & Chr$(34) & "< 0" & Chr$(34) & ")"
+
+Dim tmo1900UMTS
+tmo1900UMTS = .Range("h13").Value
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("i1").Value = "TMO GSM"
+.Range("i2").Value = "='TopData Table'!Y23"
+.Range("i3").Value = "='TopData Table'!Y36"
+.Range("i4").Value = "='TopData Table'!Y50"
+.Range("i5").Value = "='TopData Table'!Y64"
+.Range("i6").Value = "='TopData Table'!Y77"
+.Range("i7").Value = "='TopData Table'!Y90"
+.Range("i8").Value = "='TopData Table'!Y103"
+.Range("i9").Value = "='TopData Table'!Y116"
+.Range("i10").Value = "='TopData Table'!Y129"
+.Range("i11").Value = "='TopData Table'!Y142"
+.Range("i12").Value = "='TopData Table'!Y155"
+.Range("i13").Value = "=AVERAGEIF(i2:i12," & Chr$(34) & "< 0" & Chr$(34) & ")"
+
+Dim tmoGSM
+tmoGSM = .Range("i13").Value
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+.Range("j1").Value = "TMO 2100"
+.Range("j2").Value = "='TopData Table'!Y24"
+.Range("j3").Value = "='TopData Table'!Y37"
+.Range("j4").Value = "='TopData Table'!Y51"
+.Range("j5").Value = "='TopData Table'!Y65"
+.Range("j6").Value = "='TopData Table'!Y78"
+.Range("j7").Value = "='TopData Table'!Y91"
+.Range("j8").Value = "='TopData Table'!Y104"
+.Range("j9").Value = "='TopData Table'!Y117"
+.Range("j10").Value = "='TopData Table'!Y130"
+.Range("j11").Value = "='TopData Table'!Y143"
+.Range("j12").Value = "='TopData Table'!Y156"
+.Range("j13").Value = "=AVERAGEIF(j2:j12," & Chr$(34) & "< 0" & Chr$(34) & ")"
+
+Dim tmo2100
+tmo2100 = .Range("j13").Value
+End With
+
+
+
+'save and close worksheet'''''''''''
+With App
+.ActiveWorkbook.Save
+.ActiveWorkbook.Close
+End With
+
+'open output sheet
+Set Workbook = App.Workbooks.Open(cdOutput.FileName)
+Set Worksheet = Workbook.Sheets("Sheet1")
+With Worksheet
+
+.Range("A" & lblCount1.Caption).Value = Item(i)
+.Range("B" & lblCount1.Caption).Value = vzw700
+.Range("C" & lblCount1.Caption).Value = vzw850
+.Range("D" & lblCount1.Caption).Value = vzw850do
+.Range("E" & lblCount1.Caption).Value = vzw1900
+.Range("F" & lblCount1.Caption).Value = att700
+.Range("G" & lblCount1.Caption).Value = att1900
+.Range("H" & lblCount1.Caption).Value = tmo1900UMTS
+.Range("I" & lblCount1.Caption).Value = tmoGSM
+.Range("J" & lblCount1.Caption).Value = tmo2100
+
+End With
+'''''''''''''''''''''''''''''
+With App
+.ActiveWorkbook.Save
+.ActiveWorkbook.Close
+End With
+lblListCount.Caption = lblListCount.Caption - 1
+lblCount1.Caption = lblCount1.Caption + 1
+sbUpdate.Panels(2).Text = "Total Workbooks: " & List1.ListCount & " Remaining Workbooks: " & lblListCount.Caption
+' begin/end Loop''''''''''''''''
+
+
+Next i
+
+
+
+
+' Close Excel'''''''''''''''''''
+
+With App
+
+.Quit
+End With
+
+''''''''''''''''''''''''''''''''''''''''''''''
+'Set status bar
+sbUpdate.Panels(1).Text = " Signal at 80% Complete  "
+countReset
+''''''''''''''''''''''''''''''''''''''''''''
+1
+End If
+''''''''''''''''''''''''''''''''''''''''''''
+End Sub
+
+Private Sub mnuRun3_Click()
+countReset
+If List1.ListCount = 0 Then
+    MsgBox "Please load directory"
+    GoTo 0
+Else
+
+    Dim listnumber
+    Dim labelcaption As String
+    ' Open excel''''''''''''''''''''''''''''''
+    On Error Resume Next
+    Set App = GetObject(, "excel.application")
+    '''''''''''''''''''''''''''''''''''''''''
+    'if not found than create new instance
+        If Err.Number <> 0 Then
+            Set App = CreateObject("excel.application")
+        End If
+    Err.Clear
+    On Error GoTo 0
+    'Show excel
+    App.Visible = True
+
+    'Read through list''''''''''''''''''''''''''''''''''''''
+    For i = 0 To List1.ListCount - 1
+    ReDim Preserve Item(i)
+    Item(i) = List1.List(i)
+    ''''''''''''''''''''''''''''''''''''''''''''''
+    'Set status bar
+    sbUpdate.Panels(1).Text = "Working on " & Item(i)
+    ''''''''''''''''set workbook'''''''''''''''''''
+    Set Workbook = App.Workbooks.Open(Text1.Text & "\" & Item(i))
+    Set Worksheet = Workbook.Sheets("UI page")
+   ' With Worksheet
+   '     If .Range("F5").Text = "YES" Then
+   '         .Range("F5").Value = "NO"
+   '     End If
+   ' End With
+    
+    
+    Set Worksheet = Workbook.Sheets("TopData Table")
+    'select cell and set value '''''''''''''''''''
+Dim laBel() As String
+ReDim laBel(o To 8) As String
+Dim x As Variant
+
+laBel(0) = "VZW 700"
+laBel(1) = "VZW 850"
+laBel(2) = "VZW EVDO"
+laBel(3) = "VZW 1900"
+laBel(4) = "ATT 700"
+laBel(5) = "ATT 1900"
+laBel(6) = "TMO 1900 UMTS"
+laBel(7) = "TMO GSM"
+laBel(8) = "TMO 2100"
+
+
+   
+    Dim foundIt
+    foundIt = InStr(1, Item(i), "oDAS", vbTextCompare)
+        If foundIt <> 0 Then
+           ' MsgBox "good"
+            Dim ODAS() As String, lngposition As Long
+            ReDim ODAS(0 To 8) As String
+            Dim verify() As String
+            ReDim verify(0 To 8) As String
+            Dim y As Variant
+            With Worksheet
+                ODAS(0) = .Range("o4").Text
+                ODAS(1) = .Range("o5").Text
+                ODAS(2) = .Range("o6").Text
+                ODAS(3) = .Range("o7").Text
+                ODAS(4) = .Range("o8").Text
+                ODAS(5) = .Range("o9").Text
+                ODAS(6) = .Range("o10").Text
+                ODAS(7) = .Range("o11").Text
+                ODAS(8) = .Range("o12").Text
+                
+                verify(0) = .Range("t4").Text
+                verify(1) = .Range("t5").Text
+                verify(2) = .Range("t6").Text
+                verify(3) = .Range("t7").Text
+                verify(4) = .Range("t8").Text
+                verify(5) = .Range("t9").Text
+                verify(6) = .Range("t10").Text
+                verify(7) = .Range("t11").Text
+                verify(8) = .Range("t12").Text
+           End With
+           With App
+                .ActiveWorkbook.Save
+                .ActiveWorkbook.Close
+            End With
+            
+            Set Workbook = App.Workbooks.Open(cdOutput.FileName)
+            Set Worksheet = Workbook.Sheets("odas summary")
+            
+            With Worksheet
+                .Range("A" & lblCount1.Caption).Value = Item(i)
+                .Range("B" & lblCount1.Caption).Value = ODAS(0)
+                .Range("C" & lblCount1.Caption).Value = ODAS(1)
+                .Range("D" & lblCount1.Caption).Value = ODAS(2)
+                .Range("E" & lblCount1.Caption).Value = ODAS(3)
+                .Range("F" & lblCount1.Caption).Value = ODAS(4)
+                .Range("G" & lblCount1.Caption).Value = ODAS(5)
+                .Range("H" & lblCount1.Caption).Value = ODAS(6)
+                .Range("I" & lblCount1.Caption).Value = ODAS(7)
+                .Range("J" & lblCount1.Caption).Value = ODAS(8)
+                
+                lblCount1.Caption = lblCount1.Caption + 1
+            End With
+            
+            Set Worksheet = Workbook.Sheets("sheet3")
+            With Worksheet
+                .Range("A" & lblcount3.Caption).Value = Item(i)
+                .Range("B" & lblcount3.Caption).Value = verify(0)
+                .Range("C" & lblcount3.Caption).Value = verify(1)
+                .Range("D" & lblcount3.Caption).Value = verify(2)
+                .Range("E" & lblcount3.Caption).Value = verify(3)
+                .Range("F" & lblcount3.Caption).Value = verify(4)
+                .Range("G" & lblcount3.Caption).Value = verify(5)
+                .Range("H" & lblcount3.Caption).Value = verify(6)
+                .Range("I" & lblcount3.Caption).Value = verify(7)
+                .Range("J" & lblcount3.Caption).Value = verify(8)
+                
+                lblcount3.Caption = lblcount3.Caption + 1
+            End With
+            ''end verify
+            
+            With App
+                .ActiveWorkbook.Save
+                .ActiveWorkbook.Close
+            End With
+        Else
+            Dim topN() As String, lngposition2 As Long
+            ReDim topN(0 To 8) As String
+           ' Dim verify() As String
+            ReDim verify(0 To 8) As String
+            Dim z As Variant
+            
+            With Worksheet
+                topN(0) = .Range("o4").Text
+                topN(1) = .Range("o5").Text
+                topN(2) = .Range("o6").Text
+                topN(3) = .Range("o7").Text
+                topN(4) = .Range("o8").Text
+                topN(5) = .Range("o9").Text
+                topN(6) = .Range("o10").Text
+                topN(7) = .Range("o11").Text
+                topN(8) = .Range("o12").Text
+                
+                verify(0) = .Range("t4").Text
+                verify(1) = .Range("t5").Text
+                verify(2) = .Range("t6").Text
+                verify(3) = .Range("t7").Text
+                verify(4) = .Range("t8").Text
+                verify(5) = .Range("t9").Text
+                verify(6) = .Range("t10").Text
+                verify(7) = .Range("t11").Text
+                verify(8) = .Range("t12").Text
+            End With
+            With App
+                .ActiveWorkbook.Save
+                .ActiveWorkbook.Close
+            End With
+            
+            Set Workbook = App.Workbooks.Open(cdOutput.FileName)
+            Set Worksheet = Workbook.Sheets("Full Summary")
+                
+            With Worksheet
+                .Range("A" & lblcount2.Caption).Value = Item(i)
+                .Range("B" & lblcount2.Caption).Value = topN(0)
+                .Range("C" & lblcount2.Caption).Value = topN(1)
+                .Range("D" & lblcount2.Caption).Value = topN(2)
+                .Range("E" & lblcount2.Caption).Value = topN(3)
+                .Range("F" & lblcount2.Caption).Value = topN(4)
+                .Range("G" & lblcount2.Caption).Value = topN(5)
+                .Range("H" & lblcount2.Caption).Value = topN(6)
+                .Range("I" & lblcount2.Caption).Value = topN(7)
+                .Range("J" & lblcount2.Caption).Value = topN(8)
+                
+                lblcount2.Caption = lblcount2.Caption + 1
+            End With
+            
+            '''verify
+            Set Worksheet = Workbook.Sheets("sheet3")
+                With Worksheet
+.Range("A" & lblcount3.Caption).Value = Item(i)
+.Range("B" & lblcount3.Caption).Value = verify(0)
+.Range("C" & lblcount3.Caption).Value = verify(1)
+.Range("D" & lblcount3.Caption).Value = verify(2)
+.Range("E" & lblcount3.Caption).Value = verify(3)
+.Range("F" & lblcount3.Caption).Value = verify(4)
+.Range("G" & lblcount3.Caption).Value = verify(5)
+.Range("H" & lblcount3.Caption).Value = verify(6)
+.Range("I" & lblcount3.Caption).Value = verify(7)
+.Range("J" & lblcount3.Caption).Value = verify(8)
+                    lblcount3.Caption = lblcount3.Caption + 1
+            End With
+            ''end verify
+            With App
+                .ActiveWorkbook.Save
+                .ActiveWorkbook.Close
+            End With
+        
+        
+        End If
+        
+    
+    lblListCount.Caption = lblListCount.Caption - 1
+    sbUpdate.Panels(2).Text = "Total Workbooks: " & List1.ListCount & " Remaining Workbooks: " & lblListCount.Caption
+    
+    Next i
+' Close Excel'''''''''''''''''''
+
+With App
+
+.Quit
+End With
+End If
+0
+sbUpdate.Panels(1).Text = "Program Complete"
+End Sub
+
+Private Sub opt1_Click()
+mnuRun1.Visible = True
+mnuRun2.Visible = False
+mnuRun3.Visible = False
+frameDataVal.Visible = True
+frameFloor.Visible = True
+frameCellCount.Visible = True
+End Sub
+
+
+Private Sub opt2_Click()
+mnuRun2.Visible = True
+mnuRun1.Visible = False
+mnuRun3.Visible = False
+frameDataVal.Visible = False
+frameFloor.Visible = False
+frameCellCount.Visible = True
+
+End Sub
+
+
+Private Sub opt3_Click()
+mnuRun3.Visible = True
+mnuRun1.Visible = False
+mnuRun2.Visible = False
+frameDataVal.Visible = False
+frameFloor.Visible = False
+frameCellCount.Visible = True
+End Sub
+
+
